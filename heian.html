@@ -1,552 +1,733 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天赋测评 - 发现你的10大天赋优势</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?34b54d3f89eec6528f0773ed67bc9008"; /* 请替换为您这个项目正确的ID */
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天赋测评 - 发现你的10大天赋优势</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+        <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?854be62508d72a0efd85ec0e93321800"; /* 已为您替换新的百度ID */
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 <style>
-/* 您的所有原始CSS样式，省略约 370 行... */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-        /* 验证卡密页面 */
-        .verify-page {
-            background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-        }
+        /* 验证卡密页面 */
+        .verify-page {
+    待       background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
 
-        .verify-page h1 {
-            color: #667eea;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
+        .verify-page h1 {
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
 
-        .verify-page .subtitle {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
+        .verify-page .subtitle {
+      待     color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
 
-        .talent-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
 
-        .talent-item {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
+        .talent-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
 
-        .talent-item .icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
+        .talent-item .icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
 
-        .talent-item .name {
-            font-size: 13px;
-            color: #555;
-        }
+        .talent-item .name {
+            font-size: 13px;
+            color: #555;
+        }
 
-        .features-box {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: left;
-        }
+        .features-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: left;
+      待     }
 
-        .features-box h3 {
-            color: #333;
-            margin-bottom: 15px;
-        }
+        .features-box h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
 
-        .features-box ul {
-            list-style: none;
-            padding: 0;
-        }
+        .features-box ul {
+            list-style: none;
+            padding: 0;
+        }
 
-        .features-box li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
+      待     .features-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
 
-        .features-box li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
+        .features-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+      待       font-weight: bold;
+        }
 
-        .card-input {
-            width: 100%;
-            max-width: 400px;
-            margin: 30px auto;
-        }
+        .card-input {
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+        }
 
-        .card-input input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            text-align: center;
-            transition: border-color 0.3s;
-            text-transform: uppercase;
-        }
+        .card-input input {
+            width: 100%;
+      待       padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            transition: border-color 0.3s;
+            text-transform: uppercase;
+        }
 
-        .card-input input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
+        .card-input input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
 
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+      待       margin-top: 10px;
+            display: none;
+        }
 
-        .btn-start {
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+        .btn-start {
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+    待         border: none;
+            border-radius: 10px;
+            font-size: 18px;
+      待       font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
 
-        .btn-start:hover {
-            transform: translateY(-2px);
-        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+        }
 
-        .btn-start:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .btn-start:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-        .admin-link {
-            margin-top: 20px;
-            font-size: 12px;
-        }
+        .admin-link {
+            margin-top: 20px;
+      待       font-size: 12px;
+        }
 
-        .admin-link a {
-            color: #667eea;
-            text-decoration: none;
-        }
+        .admin-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
 
-        /* 测评页面样式 */
-        .test-page {
-            display: none;
-        }
+        /* 测评页面样式 */
+        .test-page {
+            display: none;
+        }
 
-        .progress-bar {
-            background: rgba(255,255,255,0.2);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
 
-        .progress-fill {
-            background: white;
-            height: 100%;
-            transition: width 0.3s;
-        }
+        .progress-fill {
+    待       background: white;
+            height: 100%;
+      待       transition: width 0.3s;
+        }
 
-        .progress-text {
-            color: white;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
+        .progress-text {
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
 
-        .question-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
+        .question-card {
+            background: white;
+      待       border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
 
-        .question-number {
-            color: #667eea;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .question-number {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: bold;
+    待         margin-bottom: 15px;
+        }
 
-        .question-text {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
+        .question-text {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 30px;
+      待       line-height: 1.6;
+        }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
 
-        .option {
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #f9f9f9;
-        }
+        .option {
+            padding: 15px 20px;
+      待       border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
 
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f4ff;
-            transform: translateX(5px);
-        }
+        .option:hover {
+  待         border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateX(5px);
+        }
 
-        .option.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-        }
+        .option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
 
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: space-between;
-        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
 
-        .btn-prev, .btn-next {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .btn-prev, .btn-next {
+            padding: 12px 30px;
+            border: none;
+      待       border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+      待       transition: all 0.3s;
+        }
 
-        .btn-prev {
-            background: #e0e0e0;
-            color: #333;
-        }
+        .btn-prev {
+            background: #e0e0e0;
+            color: #333;
+        }
 
-        .btn-next {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
+        .btn-next {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
 
-        .btn-next:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .btn-next:disabled {
+      待       opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-        /* 结果页面样式 */
-        .result-page {
-            display: none;
-        }
+        /* 结果页面样式 */
+        .result-page {
+            display: none;
+        }
 
-        .result-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        @media (max-width: 600px) {
-            .result-card {
-                padding: 25px 20px;
-            }
-        }
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+margin: 0 auto;
+        }
+        @media (max-width: 600px) {
+    .result-card {
+        padding: 25px 20px;
+    }
+}
 
-        .result-header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            color: white;
-            margin-bottom: 30px;
-        }
+        .result-header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 30px;
+        }
 
-        .result-header h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+        .result-header h2 {
+      待       font-size: 28px;
+            margin-bottom: 10px;
+        }
 
-        .result-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
+        .result-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
 
-        .chart-container {
-            position: relative;
-            height: 400px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            max-width: 600px;
-        }
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 320px;
-                padding: 10px 5px;
-                margin: 20px auto;
-            }
-        }
-        /* [V3.3 原始 scores-grid 已被删除] */
-        
-        .unlock-section {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 30px;
-        }
+.chart-container {
+    position: relative;
+    height: 400px;
+  待     margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    max-width: 600px;
+}
+@media (max-width: 768px) {
+    .chart-container {
+        height: 320px;
+        padding: 10px 5px;
+        margin: 20px auto;
+    }
+}
 
-        .unlock-title {
-            font-size: 24px;
-            color: #2d3436;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+        .scores-grid {
+            display: grid;
+      待       grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+      待       margin: 30px 0;
+        }
 
-        .unlock-features {
-            text-align: left;
-            display: inline-block;
-            margin: 20px 0;
-        }
+        .score-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        .unlock-feature {
-            padding: 10px 0;
-            color: #2d3436;
-            font-size: 15px;
-        }
+        .score-label {
+  待         font-weight: bold;
+            color: #333;
+        }
 
-        .unlock-feature:before {
-            content: "✓ ";
-            color: #00b894;
-            font-weight: bold;
-            margin-right: 8px;
-        }
+        .score-value {
+            font-size: 18px;
+            font-weight: bold;
+  待         color: #667eea;
+        }
 
-        .price {
-            font-size: 42px;
-            color: #d63031;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        
-        /* [V3.3 新增] 条形图样式 */
-        .score-bars-container { 
-            margin: 30px auto; 
-            max-width: 700px;
-        }
-        .score-row { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 12px; 
-            font-family: Arial, sans-serif;
-        }
-        .score-dim { 
-            width: 140px; 
-            font-weight: bold; 
-            color: #333; 
-            font-size: 15px; 
-            text-align: right;
-            padding-right: 15px;
-        }
-        .score-bar-wrapper {
-            flex-grow: 1; 
-            height: 18px; 
-            background: #f0f4ff; 
-            border-radius: 9px; 
-            overflow: hidden; 
-            margin: 0 10px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .score-bar-fill { 
-            height: 100%; 
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); 
-            transition: width 0.5s; 
-            position: relative;
-        }
-        .score-bar-score {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            text-shadow: 0 0 2px rgba(0,0,0,0.3);
-        }
-        .score-text-label { 
-            width: 100px; 
-            text-align: left; 
-            font-weight: bold; 
-            font-size: 14px;
-            color: #667eea; 
-        }
-        /* --- [V3.3 样式结束] --- */
+        .unlock-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 35px;
+      待       border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
 
-        .detailed-page {
-            display: none;
-        }
+        .unlock-title {
+      待       font-size: 24px;
+            color: #2d3436;
+      待       margin-bottom: 20px;
+            font-weight: bold;
+        }
 
-        /* ... (其余CSS省略) ... */
-        .hidden {
-            display: none;
-        }
+        .unlock-features {
+            text-align: left;
+      待       display: inline-block;
+            margin: 20px 0;
+        }
 
-    </style>
+        .unlock-feature {
+            padding: 10px 0;
+    待         color: #2d3436;
+            font-size: 15px;
+        }
+
+        .unlock-feature:before {
+            content: "✓ ";
+            color: #00b894;
+            font-weight: bold;
+    待         margin-right: 8px;
+        }
+
+        .price {
+            font-size: 42px;
+            color: #d63031;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .qrcode-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+    待         display: inline-block;
+            margin: 20px 0;
+        }
+
+        .qrcode-placeholder {
+            width: 220px;
+    待         height: 220px;
+            background: #f0f0f0;
+            display: flex;
+      待       align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+  待           padding: 20px;
+        }
+
+        .upload-section {
+            margin-top: 25px;
+        }
+
+        .upload-label {
+            display: block;
+            padding: 18px 40px;
+            background: #00b894;
+            color: white;
+            border-radius: 10px;
+      待       cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .upload-label:hover {
+  待         background: #00a083;
+            transform: translateY(-2px);
+        }
+
+        #paymentProof {
+            display: none;
+      待       
+        }
+
+        .preview-image {
+            max-width: 250px;
+      待       margin-top: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        /* 详细报告页面 */
+        .detailed-page {
+            display: none;
+        }
+
+        .detailed-analysis {
+  待         background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+      待     }
+
+        .analysis-section {
+            margin-bottom: 30px;
+        }
+
+        .analysis-title {
+            color: #667eea;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .analysis-content {
+            color: #333;
+      待       line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background: white;
+            padding: 20px;
+      待       border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 15px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .talent-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .scores-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .verify-page {
+                padding: 30px 20px;
+            }
+
+            .question-card {
+                padding: 25px;
+      待         }
+        }
+
+.payment-section {
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto 0 auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.quick-pay-buttons {
+  待     display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.payment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.payment-btn .icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+.payment-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+.payment-btn.alipay {
+    background: #00A3EE; /* 支付宝蓝 */
+}
+.payment-btn.wechat {
+    background: #07C160; /* 微信绿 */
+}
+
+.divider-or {
+    text-align: center;
+    color: #aaa;
+  待     margin: 25px 0;
+    position: relative;
+}
+.divider-or span {
+    background: white;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+.divider-or:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.scan-title, .transfer-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qr-code-grid {
+    display: flex;
+    flex-direction: column; /* 改为垂直布局 */
+    align-items: center; /* 让两个码在垂直方向上居中 */
+    gap: 25px; /* 稍微拉开一点垂直间距 */
+    text-align: center;
+}
+.qr-code-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.qr-code-item img {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-save {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background: #f0f0f0;
+    color: #555;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.btn-save:hover {
+    background: #e0e0e0;
+}
+
+.scan-tip {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    background: #fafafa;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.transfer-payment {
+  待     display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.copy-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 8px;
+}
+.copy-item span {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    word-break: break-all;
+}
+.copy-item button {
+    padding: 8px 14px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  待     font-size: 13px;
+    font-weight: 600;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+.copy-item button:hover {
+    background: #5a6de0;
+}
+
+/* --- CSS 粘贴结束 --- */
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div id="verifyPage" class="verify-page">
-            <h1>🎯 天赋测评系统</h1>
-            <p class="subtitle">发现你的10大天赋优势 · 找到最适合的职业方向</p>
+    <div class="container">
+                <div id="verifyPage" class="verify-page">
+            <h1>🎯 天赋测评系统</h1>
+            <p class="subtitle">发现你的10大天赋优势 · 找到最适合的职业方向</p>
 
-            <div class="talent-grid">
-                <div class="talent-item">
-                    <div class="icon">🗺️</div>
-                    <div class="name">空间</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">🧘</div>
-                    <div class="name">内省</div>
-                </div>
-            </div>
+            <div class="talent-grid">
+                <div class="talent-item">
+                    <div class="icon">🗺️</div>
+                    <div class="name">空间</div>
+                </div>
+                <div class="talent-item">
+  待               <div class="icon">💬</div>
+                    <div class="name">语言</div>
+      待         </div>
+                <div class="talent-item">
+                    <div class="icon">🧮</div>
+    待               <div class="name">逻辑</div>
+                </div>
+                <div class="talent-item">
+                    <div class="icon">🎨</div>
+                    <div class="name">绘画</div>
+                </div>
+                <div class="talent-item">
+  待               <div class="icon">✨</div>
+                    <div class="name">美学</div>
+                </div>
+                <div class="talent-item">
+                    <div class="icon">🎵</div>
+    待               <div class="name">音乐</div>
+                </div>
+                <div class="talent-item">
+        待           <div class="icon">👥</div>
+                    <div class="name">人际</div>
+                </div>
+                <div class="talent-item">
+    待               <div class="icon">💡</div>
+                    <div class="name">创造</div>
+                </div>
+                <div class="talent-item">
+                    <div class="icon">🏃</div>
+                    <div class="name">动觉</div>
+                </div>
+                <div class="talent-item">
+        待           <div class="icon">🧘</div>
+                    <div class="name">内省</div>
+                </div>
+            </div>
 
-            <div class="features-box">
-                <h3>测评包含:</h3>
-                <ul>
-                    <li>10大天赋维度全面分析 </li>
-                    <li>40道专业测试题目 </li>
-                    <li>个性化能力雷达图 </li>
-                    <li><strong style="color:#d63031;">50+职业推荐+成长路径 (¥4.9解锁)</strong></li>
-                </ul>
-            </div>
-
-            <div class="card-input">
-                <input type="text" id="cardCode" placeholder="请输入测评卡号" maxlength="20">
-                <div class="error-message" id="errorMessage">卡密错误或已使用</div>
-            </div>
-
-            <button class="btn-start" onclick="verifyCard()">开始测评</button>
-
-            <div class="admin-link">
-                <a href="#" onclick="showAdminPanel(); return false;">管理员入口</a>
-            </div>
-        </div>
-
-        <div id="testPage" class="test-page">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-            </div>
-            <div class="progress-text" id="progressText">准备开始...</div>
-            <div class="question-card" id="questionCard"></div>
-        </div>
-
-        <div id="resultPage" class="result-page">
-            <div class="result-card">
-                <div class="result-header">
-                    <h2>🎉 恭喜完成测试!</h2>
-                    <p id="resultName">你的天赋分析报告</p>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="radarChart"></canvas>
-                </div>
-
-                <div class="score-bars-container" id="scoreBarsContainer">
-                    </div>
-
-                <div class="unlock-section">
-                    <div class="unlock-title" style="font-size: 20px; line-height: 1.6; color: #2d3436;">
-                        您的基础版结果已出 👇<br>
-                        如需完整的 <strong style="color: #d63031;">50+职业推荐</strong> 和 <strong style="color: #d63031;">专属行动方案</strong>，可付费解锁：
-                    </div>
-                    <div class="unlock-features">
-                        <div class="unlock-feature">10个维度完整详细分析(每项500字深度解读)</div>
-                        <div class="unlock-feature">专属职业发展建议(50+精准职业匹配)</div>
-                        <div class="unlock-feature">性格优势提升方案(可落地执行的具体行动)</div>
-                        <div class="unlock-feature">个性化成长路径规划</div>
-                        <div class="unlock-feature">各维度学习资源推荐</div>
-                    </div>
-                    <div class="price">¥4.9</div>
-                    <p style="color: #2d3436; font-size: 14px; margin-bottom: 20px;">
-                        ⏰ 限时优惠价!原价29.9元
-                    </p>
-                    
-                    <div class="payment-section">
-                        </div>
-                    
-                    <div class="upload-section">
-                        <label for="paymentProof" class="upload-label" style="background: #1C3F7F; color: white;">
-                            📸 上传付款截图,立即查看详细报告
-                        </label>
-                        <input type="file" id="paymentProof" accept="image/*" onchange="handlePaymentProof(event)">
-                        <img id="previewImage" class="preview-image" alt="付款截图预览">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="detailedPage" class="detailed-page">
-            </div>
-    </div>
-
-    <script>
-        // ... (省略 JS 代码块，请确保在您自己的文件里这块代码是完整的) ...
-        
-        // --- 底部 JS 函数 ---
-        
-        // ... (showResult, drawRadarChart 等函数，已替换为您需要的条形图逻辑) ...
-        
-        function getDeviceFingerprint() { /* ... */ }
-        function verifyCard() { /* ... */ }
-        function showAdminPanel() { /* ... */ }
-        function getPersonalityType(dimension) { /* ... */ }
-        // ... (其余函数) ...
-    </script>
-</body>
-</html>
+            <div class="features-box">
+                <h3>测评包含:</h3>
+          待       <ul>
+                    <li>10大天赋维度全面分析 </li>
+      待             <li>40道专业测试题目 </li>
+                      <li>个性化能力雷达图 </li>
+                      <li><strong style="color:#d6303
