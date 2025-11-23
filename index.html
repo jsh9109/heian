@@ -730,44 +730,73 @@ margin-left: 0;  /* 👈 新增这行 */
                     <div class="price-note">限时特惠 · 一杯奶茶的价格 · 了解真实的自己</div>
                 </div>
                 
-                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
-                    💳 选择支付方式
-                </h4>
-                
-                <div style="max-width: 400px; margin: 0 auto;">
-                    <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
-                        <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
-                    </a>
-                    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
-                        <span style="margin-right: 6px;">⚡</span> 微信快捷支付
-                    </button>
-                    
-                    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
-                    
-                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: #333; font-size: 0.95em;">jsh9109</span>
-                        <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
-                    </div>
-                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
-                        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
-                    </div>
-                </div>
-                
-                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
-                    📸 上传付款截图
-                </h4>
-                
-                <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                    📸 点击上传截图，立即查看完整报告
-                </label>
-                <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
-                
-                <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,182,193,0.1); border-radius: 10px;">
-                    <p style="color: #FF69B4; font-size: 0.85em; margin: 0;">
-                        🔒 上传截图后立即解锁完整报告，无需等待
-                    </p>
-                </div>
+<h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+    💳 选择支付方式
+</h4>
+
+<div style="max-width: 400px; margin: 0 auto;">
+    <!-- 快捷支付按钮 -->
+    <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
+        <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
+    </a>
+    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
+        <span style="margin-right: 6px;">⚡</span> 微信快捷支付
+    </button>
+    
+    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+    
+    <!-- 👇 收款码图片（新增部分） -->
+    <div style="text-align: center; margin: 20px 0;">
+        <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥4.9</p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
+                     alt="微信收款码" 
+                     onerror="this.parentElement.style.display='none'" 
+                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
+                <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
+                     alt="支付宝收款码" 
+                     onerror="this.parentElement.style.display='none'" 
+                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
+                <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
+            </div>
+        </div>
+        <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
+            💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
+        </p>
+    </div>
+    <!-- 👆 收款码图片结束 -->
+    
+    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+    
+    <!-- 复制账号 -->
+    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: #333; font-size: 0.95em;">jsh9109</span>
+        <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
+    </div>
+    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
+        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+    </div>
+</div>
+
+<h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+    📸 上传付款截图
+</h4>
+
+<label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+    📸 点击上传截图，立即查看完整报告
+</label>
+<input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+
+<div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,182,193,0.1); border-radius: 10px;">
+    <p style="color: #FF69B4; font-size: 0.85em; margin: 0;">
+        🔒 上传截图后立即解锁完整报告，无需等待
+    </p>
+</div>
             </div>
         </div>
         
@@ -1470,4 +1499,5 @@ margin-left: 0;  /* 👈 新增这行 */
     </script>
 </body>
 </html>
+
 
