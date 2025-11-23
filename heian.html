@@ -1,1502 +1,1471 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天赋测评 - 发现你的10大天赋优势</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
-        <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?854be62508d72a0efd85ec0e93321800"; /* 已为您替换您的最新百度ID */
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑暗人格测试 - 你的D因子是多少？</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d597963808dc6d91484ad4fd2fafb693";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* 验证卡密页面 */
-        .verify-page {
-            background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        .verify-page h1 {
-            color: #667eea;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .verify-page .subtitle {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-
-        .talent-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .talent-item {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .talent-item .icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .talent-item .name {
-            font-size: 13px;
-            color: #555;
-        }
-
-        .features-box {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .features-box h3 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .features-box ul {
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #FFE5F0 0%, #FFF0F5 50%, #F0E5FF 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px 25px;
+            box-shadow: 0 15px 50px rgba(219, 112, 147, 0.2);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FFB6C1, #DDA0DD, #FFB6C1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 12px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #FF69B4 0%, #BA55D3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1:after {
+            content: '✨';
+            position: absolute;
+            right: -30px;
+            top: -5px;
+            font-size: 0.5em;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+        }
+        
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .dimension-card {
+            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dimension-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,182,193,0.1) 0%, transparent 70%);
+            transition: transform 0.5s;
+        }
+        
+        .dimension-card:hover:before {
+            transform: translate(25%, 25%);
+        }
+        
+        .dimension-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFB6C1;
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+        }
+        
+        .dimension-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .dimension-name {
+            color: #FF69B4;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .dimension-desc {
+            color: #888;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        
+        .features-list {
+            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
+            padding: 22px;
+            border-radius: 18px;
+            margin: 25px 0;
+            border-left: 4px solid #FFB6C1;
+        }
+        
+        .features-list h3 {
+            color: #FF69B4;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .features-list ul {
             list-style: none;
-            padding: 0;
-        }
-
-        .features-box li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .features-box li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .card-input {
-            width: 100%;
-            max-width: 400px;
-            margin: 30px auto;
-        }
-
-        .card-input input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            text-align: center;
-            transition: border-color 0.3s;
-            text-transform: uppercase;
-        }
-
-        .card-input input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .btn-start {
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-start:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .admin-link {
-            margin-top: 20px;
-            font-size: 12px;
-        }
-
-        .admin-link a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        /* 测评页面样式 */
-        .test-page {
-            display: none;
-        }
-
-        .progress-bar {
-            background: rgba(255,255,255,0.2);
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-
-        .progress-fill {
-            background: white;
-            height: 100%;
-            transition: width 0.3s;
-        }
-
-        .progress-text {
-            color: white;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        .question-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .question-number {
-            color: #667eea;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .question-text {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .option {
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #f9f9f9;
-        }
-
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f4ff;
-            transform: translateX(5px);
-        }
-
-        .option.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: space-between;
-        }
-
-        .btn-prev, .btn-next {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-prev {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-next {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-next:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* 结果页面样式 */
-        .result-page {
-            display: none;
-        }
-
-        .result-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 900px;
-margin: 0 auto;
-        }
-        @media (max-width: 600px) {
-    .result-card {
-        padding: 25px 20px;
-    }
-}
-
-        .result-header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        .result-header h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .result-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-.chart-container {
-    position: relative;
-    height: 400px;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 15px;
-    max-width: 600px;
-}
-@media (max-width: 768px) {
-    .chart-container {
-        height: 320px;
-        padding: 10px 5px;
-        margin: 20px auto;
-    }
-}
-
-        .scores-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .score-item {
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .score-label {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .score-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .unlock-section {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .unlock-title {
-            font-size: 24px;
-            color: #2d3436;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .unlock-features {
-            text-align: left;
-            display: inline-block;
-            margin: 20px 0;
-        }
-
-        .unlock-feature {
-            padding: 10px 0;
-            color: #2d3436;
-            font-size: 15px;
-        }
-
-        .unlock-feature:before {
-            content: "✓ ";
-            color: #00b894;
-      待       font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .price {
-            font-size: 42px;
-            color: #d63031;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .qrcode-container {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            display: inline-block;
-      待       margin: 20px 0;
-        }
-
-        .qrcode-placeholder {
-            width: 220px;
-            height: 220px;
-            background: #f0f0f0;
-            display: flex;
-  待           align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            color: #666;
-            font-size: 14px;
-            text-align: center;
-  待           padding: 20px;
-        }
-
-        .upload-section {
-    待       margin-top: 25px;
-        }
-
-        .upload-label {
-    待       display: block;
-            padding: 18px 40px;
-            background: #00b894;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: center;
-  待           font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        .upload-label:hover {
-  待         background: #00a083;
-            transform: translateY(-2px);
-        }
-
-        #paymentProof {
-    待       display: none;
-        }
-
-        .preview-image {
-  待         max-width: 250px;
-            margin-top: 20px;
-            border-radius: 10px;
-            display: none;
-        }
-
-        /* 详细报告页面 */
-        .detailed-page {
-  待         display: none;
-        }
-
-        .detailed-analysis {
-  待         background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 25px 0;
-        }
-
-        .analysis-section {
-  待         margin-bottom: 30px;
-        }
-
-        .analysis-title {
-            color: #667eea;
-            font-size: 20px;
-  待           font-weight: 600;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .analysis-content {
-  待         color: #333;
-            line-height: 1.8;
-            font-size: 15px;
-        }
-
-        .highlight-box {
-    待         background: white;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            margin: 15px 0;
-        }
-
-        .hidden {
-  待         display: none;
-        }
-
-        @media (max-width: 600px) {
-            .talent-grid {
-    待           grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .scores-grid {
-  待             grid-template-columns: 1fr;
-            }
-
-            .verify-page {
-  待             padding: 30px 20px;
-            }
-
-            .question-card {
-  待             padding: 25px;
-            }
-            /* --- 粘贴到 <style> 标签底部 --- */
-        }
-.payment-section {
-  待     width: 100%;
-    max-width: 450px;
-    margin: 20px auto 0 auto;
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-}
-
-.quick-pay-buttons {
-  待     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.payment-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    color: white;
-    transition: transform 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-.payment-btn .icon {
-    margin-right: 8px;
-    font-size: 18px;
-}
-.payment-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-.payment-btn.alipay {
-    background: #00A3EE; /* 支付宝蓝 */
-}
-.payment-btn.wechat {
-    background: #07C160; /* 微信绿 */
-}
-
-.divider-or {
-  待     text-align: center;
-    color: #aaa;
-    margin: 25px 0;
-    position: relative;
-}
-.divider-or span {
-    background: white;
-    padding: 0 10px;
-    position: relative;
-    z-index: 1;
-}
-.divider-or:before {
-  待     content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 1px;
-    background: #e0e0e0;
-    z-index: 0;
-}
-
-.scan-title, .transfer-title {
-  待     font-size: 16px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.qr-code-grid {
-    display: flex;
-    flex-direction: column; /* 改为垂直布局 */
-    align-items: center; /* 让两个码在垂直方向上居中 */
-    gap: 25px; /* 稍微拉开一点垂直间距 */
-    text-align: center;
-}
-.qr-code-item {
-  待     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.qr-code-item img {
-  待     width: 140px;
-    height: 140px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.btn-save {
-  待     display: inline-block;
-    margin-top: 15px;
-    padding: 8px 16px;
-    background: #f0f0f0;
-    color: #555;
-    border-radius: 6px;
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: transform 0.2s;
-}
-.btn-save:hover {
-  待     background: #e0e0e0;
-}
-
-.scan-tip {
-  待     text-align: center;
-    font-size: 13px;
-    color: #888;
-    background: #fafafa;
-    padding: 10px;
-    border-radius: 6px;
-    margin-top: 20px;
-}
-
-.transfer-payment {
-  待     display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.copy-item {
-  待     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f8f9fa;
-    padding: 12px 15px;
-    border-radius: 8px;
-}
-.copy-item span {
-  待     font-size: 15px;
-    color: #333;
-    font-weight: 500;
-    word-break: break-all;
-}
-.copy-item button {
-  待     padding: 8px 14px;
-    border: none;
-    background: #667eea;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    margin-left: 10px;
-    flex-shrink: 0;
-}
-.copy-item button:hover {
-  待     background: #5a6de0;
-}
-/* --- [新增] V3.3 天赋条形图样式 --- */
-.score-bars-container { 
-    margin: 30px auto; 
-    max-width: 700px;
-}
-.score-row { 
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 12px; 
-    font-family: Arial, sans-serif;
-}
-.score-dim { 
-    width: 140px; /* 维度名称宽度 */
-    font-weight: bold; 
-    color: #333; 
-    font-size: 15px; 
-    text-align: right;
-    padding-right: 15px;
-}
-.score-bar-wrapper {
-    flex-grow: 1; 
-    height: 18px; 
-    background: #f0f4ff; /* 浅蓝背景 */
-    border-radius: 9px; 
-    overflow: hidden; 
-  待     margin: 0 10px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-.score-bar-fill { 
-    height: 100%; 
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); /* 紫色渐变 */
-    transition: width 0.5s; 
-    position: relative;
-}
-.score-bar-score {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    text-shadow: 0 0 2px rgba(0,0,0,0.3);
-}
-.score-text-label { 
-    width: 100px; /* 文本解释宽度 */
-    text-align: left; 
-    font-weight: bold; 
-    font-size: 14px;
-    color: #667eea; /* 主题色 */
-}
-/* --- [新增] V3.3 样式结束 --- */
-
-    </style>
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 0.95em;
+            border-bottom: 1px dashed #FFE5F0;
+            transition: padding-left 0.3s;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li:hover {
+            padding-left: 10px;
+        }
+        
+        .features-list li:before {
+            content: "💖 ";
+            margin-right: 8px;
+        }
+        
+        .input-group {
+            margin: 25px 0;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #FFE5F0;
+            border-radius: 15px;
+            font-size: 1em;
+            text-align: center;
+            transition: all 0.3s;
+            background: #FAFAFA;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #FFB6C1;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.15);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #FF69B4;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .btn-secondary:hover {
+            background: #FFF5FA;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #FFE5F0;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFB6C1 0%, #DDA0DD 100%);
+            transition: width 0.3s;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+        }
+        
+        .progress-text {
+            color: #FF69B4;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 1em;
+        }
+        
+        .question-card {
+            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .question-text {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #FFE5F0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+            color: #666;
+        }
+        
+        .option:hover {
+            border-color: #FFB6C1;
+            background: #FFF5FA;
+            transform: translateX(5px);
+        }
+        
+        .option.selected {
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+            color: white;
+            border-color: #FFB6C1;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+        }
+        
+        .result-banner {
+            background: linear-gradient(135deg, #FF69B4 0%, #BA55D3 100%);
+            color: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-banner:before {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+        
+        .result-banner:after {
+            content: '💫';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+        
+        .result-banner h2 {
+            font-size: 1.8em;
+            margin-bottom: 12px;
+        }
+        
+        .rpi-score {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 18px 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .rpi-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 380px;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .scores-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .score-item {
+            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #FFB6C1;
+            transition: transform 0.3s;
+        }
+        
+        .score-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .score-item-name {
+            color: #FF69B4;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+        
+        .score-item-value {
+            font-size: 1.6em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .score-item-desc {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+        
+        .type-card {
+            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
+            padding: 25px;
+            border-radius: 18px;
+            margin: 25px 0;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .type-card h3 {
+            color: #FF69B4;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+        }
+        
+        .type-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1em;
+        }
+        
+        .characteristics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .characteristic-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .characteristic-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .characteristic-title {
+            color: #FF69B4;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .characteristic-list {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .unlock-section {
+            background: linear-gradient(135deg, #FFF0F5 0%, #F0E5FF 100%);
+            padding: 35px 25px;
+            border-radius: 20px;
+            margin: 35px 0;
+            border: 3px solid #FFB6C1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .unlock-section:before {
+            content: '🎁';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3em;
+            opacity: 0.1;
+        }
+        
+        .unlock-section h3 {
+            color: #FF1493;
+            font-size: 1.7em;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .price-tag {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1em;
+        }
+        
+        .current-price {
+            color: #FF1493;
+            font-size: 2.8em;
+            font-weight: bold;
+            margin: 8px 0;
+            text-shadow: 0 2px 4px rgba(255,20,147,0.2);
+        }
+        
+        .price-note {
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        
+        .admin-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #BBB;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .admin-link:hover {
+            color: #FFB6C1;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 25px 18px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .dimensions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .characteristics {
+                grid-template-columns: 1fr;
+            }
+            
+            .scores-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-                <div id="verifyPage" class="verify-page">
-            <h1>🎯 天赋测评系统</h1>
-            <p class="subtitle">发现你的10大天赋优势 · 找到最适合的职业方向</p>
+    <div class="container">
+        <!-- 卡密验证页 -->
+        <div id="cardVerifyPage" class="card">
+            <div class="header">
+                <h1>黑暗人格测试</h1>
+                <p>你的黑暗人格指数是多少？</p>
+                <p style="font-size: 0.95em; color: #FF69B4;">测测你的D因子得分 ✨</p>
+                <span class="badge">基于心理学黑暗三角理论的专业评估</span>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="cardInput" placeholder="请输入测评卡号" maxlength="20">
+            </div>
+            
+            <button class="btn btn-primary" onclick="verifyCard()">开始测评 💕</button>
+            
+            <div class="dimensions-grid" style="margin-top: 30px;">
+                <div class="dimension-card">
+                    <div class="dimension-icon">🎭</div>
+                    <div class="dimension-name">马基雅维利主义</div>
+                    <div class="dimension-desc">操控和策略性思维</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">👑</div>
+                    <div class="dimension-name">自恋倾向</div>
+                    <div class="dimension-desc">自我中心和优越感</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">🔥</div>
+                    <div class="dimension-name">精神变态</div>
+                    <div class="dimension-desc">冷酷和冲动特质</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">⚡</div>
+                    <div class="dimension-name">施虐倾向</div>
+                    <div class="dimension-desc">享受他人痛苦</div>
+                </div>
+            </div>
+            
+            <div class="features-list">
+                <h3>测评包含</h3>
+                <ul>
+                    <li>40题专业心理量表</li>
+                    <li>4大核心维度深度分析</li>
+                    <li>黑暗人格D因子评分</li>
+                    <li><strong style="color:#FF1493;">完整深度报告+成长建议 (¥4.9解锁)</strong></li>
+                </ul>
+            </div>
+            
+            <div class="admin-link" onclick="showAdminPanel()">管理员入口 →</div>
+        </div>
+        
+        <!-- 测试页 -->
+        <div id="testPage" class="card hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">第1题 / 共40题</div>
+            
+            <div class="question-card">
+                <div class="question-text" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 20px;">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" style="display: none;">← 上一题</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
+            </div>
+        </div>
+        <!-- 免费结果页 -->
+        <div id="freeResultPage" class="card hidden">
+            <div class="result-banner">
+                <h2>你的黑暗人格报告</h2>
+                <p style="font-size: 1.1em; margin-top: 10px; opacity: 0.95;">基础版</p>
+                <div class="rpi-score" id="archetypeIcon">🔥</div>
+                <div class="rpi-level" id="archetypeName">魔丸体质</div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+            
+            <div class="scores-list" id="scoresList"></div>
+            
+            <div class="type-card">
+                <h3 id="typeName">魔丸体质</h3>
+                <p id="typeDesc">你的D因子得分56%，在人格上展现出明显的自主性和竞争意识。</p>
+            </div>
+            
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <div class="characteristic-title">🔥 你的特质</div>
+                    <div class="characteristic-list">
+                        • 自我中心<br>
+                        • 竞争意识<br>
+                        • 情感控制
+                    </div>
+                </div>
+                <div class="characteristic-item">
+                    <div class="characteristic-title">⚠️ 需要注意</div>
+                    <div class="characteristic-list">
+                        • 共情能力<br>
+                        • 人际边界<br>
+                        • 冲突处理
+                    </div>
+                </div>
+                <div class="characteristic-item">
+                    <div class="characteristic-title">💡 成长方向</div>
+                    <div class="characteristic-list">
+                        • 同理心<br>
+                        • 团队协作<br>
+                        • 情绪管理
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid #FFB6C1;">
+                <h4 style="color: #FF69B4; margin-bottom: 12px; font-size: 1.1em;">💝 基础建议（免费版）</h4>
+                <ul style="list-style: none; line-height: 1.8; color: #666;">
+                    <li style="padding: 6px 0;">🔥 了解自己：认识到你的人格特质</li>
+                    <li style="padding: 6px 0;">🔥 平衡发展：培养更多的同理心</li>
+                    <li style="padding: 6px 0;">🔥 完整分析：付费版有深度心理解析</li>
+                </ul>
+            </div>
+            
+            <div class="unlock-section">
+                <h3>
+                    你的<strong style="color: #FF1493;">基础版</strong>报告已出 ✨<br>
+                    解锁 <strong style="color: #FF1493;">完整深度分析</strong> 看透你的黑暗人格
+                </h3>
+                
+                <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
+                        <span style="color: #999;">基础诊断（分数）</span>
+                        <span style="color: #FF1493; font-weight: bold;">→ 完整人格图谱</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
+                        <span style="color: #999;">简单描述（3句话）</span>
+                        <span style="color: #FF1493; font-weight: bold;">→ 深度心理分析</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
+                        <span style="color: #999;">无行为建议</span>
+                        <span style="color: #FF1493; font-weight: bold;">→ 个性化成长方案</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                        <span style="color: #999;">无案例分析</span>
+                        <span style="color: #FF1493; font-weight: bold;">→ 真实场景案例</span>
+                    </div>
+                </div>
+                
+                <div class="price-tag">
+                    <div class="original-price">原价 ¥29.9</div>
+                    <div class="current-price">¥4.9</div>
+                    <div class="price-note">限时特惠 · 一杯奶茶的价格 · 了解真实的自己</div>
+                </div>
+                
+                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+                    💳 选择支付方式
+                </h4>
+                
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
+                        <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
+                    </a>
+                    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
+                        <span style="margin-right: 6px;">⚡</span> 微信快捷支付
+                    </button>
+                    
+                    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #333; font-size: 0.95em;">jsh9109</span>
+                        <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
+                        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+                    </div>
+                </div>
+                
+                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+                    📸 上传付款截图
+                </h4>
+                
+                <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    📸 点击上传截图，立即查看完整报告
+                </label>
+                <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+                
+                <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,182,193,0.1); border-radius: 10px;">
+                    <p style="color: #FF69B4; font-size: 0.85em; margin: 0;">
+                        🔒 上传截图后立即解锁完整报告，无需等待
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 完整报告页 -->
+        <div id="fullReportPage" class="card hidden">
+            <div style="background: linear-gradient(135deg, #07C160 0%, #05A650 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
+                <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁！</h3>
+                <p style="font-size: 1em; opacity: 0.95;">深度分析报告如下，建议保存本页面</p>
+                <p style="font-size: 0.85em; margin-top: 8px; opacity: 0.9;">
+                    💡 可以截图保存或收藏本页面链接
+                </p>
+            </div>
+            
+            <div class="result-banner">
+                <h2>你的黑暗人格完整报告</h2>
+                <div class="rpi-score" id="fullDarkScore">72%</div>
+                <div class="rpi-level" id="fullDarkLevel">魔丸体质 - D因子56%</div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="fullRadarChart"></canvas>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB6C1;">
+                <h3 style="color: #FF69B4; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分：你的黑暗人格深度解析</h3>
+                <div id="fullAnalysis">
+                    <h4 style="color: #FF1493; margin: 20px 0 10px 0;">🎭 你的人格类型：魔丸体质</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        你是魔丸体质，D因子得分56%。你在人格上展现出明显的自主性和竞争意识，敢于为自己争取利益。
+                        这种特质让你在需要竞争和决断的场合中更有优势，但同时也保持着一定的同理心。
+                        你能在自我实现和人际关系之间找到平衡点。
+                    </p>
+                    
+                    <h4 style="color: #FF1493; margin: 25px 0 10px 0;">💡 核心特征分析</h4>
+                    <div style="background: #FFF5FA; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF69B4;">自我中心倾向（70%）：</strong>你在决策时会优先考虑自己的利益，这并非自私，而是一种健康的自我保护机制。</p>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF69B4;">竞争意识（65%）：</strong>你享受竞争带来的刺激感，不愿意在竞争中处于下风。</p>
+                        <p style="color: #666; line-height: 1.8;"><strong style="color: #FF69B4;">情感控制（55%）：</strong>你能够理性地管理自己的情绪，不会轻易被感情左右决策。</p>
+                    </div>
+                    
+                    <h4 style="color: #FF1493; margin: 25px 0 10px 0;">🎯 优势与劣势</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
+                        <div style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 20px; border-radius: 12px;">
+                            <h5 style="color: #2E7D32; margin-bottom: 12px;">✨ 你的优势</h5>
+                            <ul style="color: #555; line-height: 1.8; padding-left: 20px;">
+                                <li>目标明确，执行力强</li>
+                                <li>不容易被他人情绪影响</li>
+                                <li>敢于表达真实想法</li>
+                                <li>在竞争环境中表现出色</li>
+                            </ul>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #FFE0E0 0%, #FFC8C8 100%); padding: 20px; border-radius: 12px;">
+                            <h5 style="color: #C62828; margin-bottom: 12px;">⚠️ 需要注意</h5>
+                            <ul style="color: #555; line-height: 1.8; padding-left: 20px;">
+                                <li>可能忽视他人感受</li>
+                                <li>容易在人际关系中引发矛盾</li>
+                                <li>过度竞争可能损害团队氛围</li>
+                                <li>需要学会适当的妥协</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB6C1;">
+                <h3 style="color: #FF69B4; font-size: 1.6em; margin-bottom: 15px;">💝 第二部分：人际关系指南</h3>
+                
+                <h4 style="color: #FF1493; margin: 20px 0 10px 0;">👥 适合你的社交模式</h4>
+                <p style="color: #666; line-height: 1.8;">
+                    基于你的人格特质，建议采用"选择性深交"策略。你不需要取悦所有人，
+                    而应该把精力投入到真正值得的关系中。在职场中，保持专业和边界感；
+                    在私人关系中，可以更多展现真实的自己。
+                </p>
+                
+                <h4 style="color: #FF1493; margin: 25px 0 10px 0;">💬 沟通建议</h4>
+                <div style="background: #FFF5FA; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #FF69B4;">职场沟通：</strong>
+                        直接表达观点时，可以先用"我理解…但我认为…"的句式，减少冲突感。
+                    </p>
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #FF69B4;">亲密关系：</strong>
+                        适当展现脆弱的一面，让对方感受到被需要，这会增强关系的亲密度。
+                    </p>
+                    <p style="color: #666; line-height: 1.8;">
+                        <strong style="color: #FF69B4;">冲突处理：</strong>
+                        给自己设置"冷静期"，避免在情绪激动时做出过激反应。
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB6C1;">
+                <h3 style="color: #FF69B4; font-size: 1.6em; margin-bottom: 15px;">🌱 第三部分：成长建议</h3>
+                
+                <h4 style="color: #FF1493; margin: 20px 0 10px 0;">📅 30天自我提升计划</h4>
+                <div style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #2E7D32;">第1-10天：觉察阶段</strong><br>
+                        每天记录3个"我优先考虑自己"的时刻，反思是否有更好的平衡方式。
+                    </p>
+                    <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #2E7D32;">第11-20天：练习阶段</strong><br>
+                        主动做3件"不求回报"的小事，体验付出的感觉。
+                    </p>
+                    <p style="color: #555; line-height: 1.8;">
+                        <strong style="color: #2E7D32;">第21-30天：巩固阶段</strong><br>
+                        在保持自我边界的同时，尝试用"共赢思维"处理人际关系。
+                    </p>
+                </div>
+                
+                <h4 style="color: #FF1493; margin: 25px 0 10px 0;">📚 推荐阅读</h4>
+                <ul style="color: #666; line-height: 2; padding-left: 20px;">
+                    <li>《自私的基因》- 理解人性的底层逻辑</li>
+                    <li>《非暴力沟通》- 学习有效的沟通技巧</li>
+                    <li>《原则》- 瑞·达利欧的决策方法论</li>
+                </ul>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin: 25px 0;">
+                <h3 style="margin-bottom: 12px; font-size: 1.4em;">💕 感谢你的支持</h3>
+                <p style="font-size: 0.95em; opacity: 0.95; line-height: 1.6;">
+                    这份报告是基于你的真实作答生成的个性化分析<br>
+                    建议保存本页面，随时回顾查看<br>
+                    祝你在自我认知的道路上越走越远 ✨
+                </p>
+            </div>
+            
+            <button class="btn btn-secondary" onclick="location.reload()">重新测评</button>
+        </div>
+        
+        <!-- 管理员后台 -->
+        <div id="adminPanel" class="card hidden">
+            <h2 style="color: #FF69B4; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
+            <div class="input-group">
+                <input type="password" id="adminPassword" placeholder="请输入管理员密码">
+            </div>
+            <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
+            
+            <div id="adminContent" class="hidden"></div>
+        </div>
+    </div>
+    <script>
+        // ==================== [配置区] ====================
+        const CUSTOMER_SERVICE_WECHAT = 'jsh9109';
+        const ADMIN_PASSWORD = 'lss900201';
+        const MASTER_CODE = "GEMINI-MASTER";
+        // ==================================================
+        
+        /* 40道黑暗人格测试题目 */
+        const questions = [
+            /* 维度A: 马基雅维利主义 (10题) */
+            {text: '我认为在必要时撒谎是可以接受的。', dimension: 0},
+            {text: '我擅长操控别人做我想做的事。', dimension: 0},
+            {text: '我经常为了达到目的而隐瞒真相。', dimension: 0},
+            {text: '我会利用别人的弱点来获得优势。', dimension: 0},
+            {text: '我总是诚实地表达自己的想法。', dimension: 0, reverse: true},
+            {text: '在谈判中，我善于隐藏自己的真实意图。', dimension: 0},
+            {text: '我认为奉承是获取利益的有效手段。', dimension: 0},
+            {text: '我很难对别人说违心的话。', dimension: 0, reverse: true},
+            {text: '为了成功，有时需要牺牲他人利益。', dimension: 0},
+            {text: '我喜欢制定长期计划来达成目标。', dimension: 0},
+            
+            /* 维度B: 自恋倾向 (10题) */
+            {text: '我觉得自己比大多数人优秀。', dimension: 1},
+            {text: '我喜欢成为关注的焦点。', dimension: 1},
+            {text: '我经常幻想自己获得巨大成功。', dimension: 1},
+            {text: '我觉得自己应该得到特殊待遇。', dimension: 1},
+            {text: '我很少炫耀自己的成就。', dimension: 1, reverse: true},
+            {text: '我渴望得到他人的赞美和认可。', dimension: 1},
+            {text: '我认为自己拥有独特的才能。', dimension: 1},
+            {text: '我不在乎别人怎么看我。', dimension: 1, reverse: true},
+            {text: '我喜欢看到别人羡慕我。', dimension: 1},
+            {text: '我觉得批评我的人是嫉妒我。', dimension: 1},
+            
+            /* 维度C: 精神变态 (10题) */
+            {text: '我很少为自己的行为感到后悔。', dimension: 2},
+            {text: '我能轻易地伤害他人而不感到愧疚。', dimension: 2},
+            {text: '我经常冲动行事，不考虑后果。', dimension: 2},
+            {text: '我很难与他人建立深厚的情感联系。', dimension: 2},
+            {text: '我经常为伤害别人而感到内疚。', dimension: 2, reverse: true},
+            {text: '我喜欢寻求刺激和冒险。', dimension: 2},
+            {text: '我很少担心未来会发生什么。', dimension: 2},
+            {text: '别人的痛苦会让我感到难过。', dimension: 2, reverse: true},
+            {text: '我能在压力下保持冷静。', dimension: 2},
+            {text: '我很难控制自己的脾气。', dimension: 2},
+            
+            /* 维度D: 施虐倾向 (10题) */
+            {text: '我有时享受看到别人不舒服。', dimension: 3},
+            {text: '让别人感到痛苦会给我带来满足感。', dimension: 3},
+            {text: '我喜欢在争论中占上风，让对方难堪。', dimension: 3},
+            {text: '我从不故意伤害他人。', dimension: 3, reverse: true},
+            {text: '我喜欢在游戏或竞争中击败对手。', dimension: 3},
+            {text: '看到恶霸欺负弱者让我感到愤怒。', dimension: 3, reverse: true},
+            {text: '我有时会故意说些刻薄的话。', dimension: 3},
+            {text: '我享受掌控他人的感觉。', dimension: 3},
+            {text: '我总是尽力避免冲突。', dimension: 3, reverse: true},
+            {text: '在权力游戏中，我喜欢处于主导地位。', dimension: 3}
+        ];
+        
+        const options = ['完全不像我', '不太像我', '不确定', '有点像我', '非常像我'];
+        
+        let currentPage = 'verify';
+        let currentQuestion = 0;
+        let answers = new Array(40).fill(0);
+        let currentCard = null;
+        
+        function getDeviceFingerprint() {
+            try {
+                let canvasFingerprint = '';
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.textBaseline = 'top';
+                        ctx.font = '14px Arial';
+                        ctx.fillText('fingerprint', 2, 2);
+                        canvasFingerprint = canvas.toDataURL().slice(-50);
+                    }
+                } catch (e) {
+                    canvasFingerprint = Date.now().toString();
+                }
+                
+                const fingerprint = [
+                    navigator.userAgent || 'unknown',
+                    navigator.language || 'unknown',
+                    (screen.width || 0) + 'x' + (screen.height || 0),
+                    screen.colorDepth || 0,
+                    new Date().getTimezoneOffset(),
+                    canvasFingerprint
+                ].join('|');
+                
+                let hash = 0;
+                for (let i = 0; i < fingerprint.length; i++) {
+                    const char = fingerprint.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                
+                return 'device_' + Math.abs(hash).toString(36);
+            } catch (error) {
+                return 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+        }
+        
+        function verifyCard() {
+            const cardInput = document.getElementById('cardInput');
+            const cardCode = cardInput.value.trim().toUpperCase();
+            
+            if (cardCode === MASTER_CODE) {
+                currentCard = MASTER_CODE;
+                showTestPage(); 
+                return;
+            }
+            
+            if (!cardCode) {
+                alert('请输入测评卡号');
+                return;
+            }
+            
+            if (!/^[A-Z0-9\-]{8,20}$/.test(cardCode)) {
+                alert('卡号格式不正确');
+                return;
+            }
+            
+            const deviceId = getDeviceFingerprint();
+            let cards = JSON.parse(localStorage.getItem('darkCards') || '[]');
+            let card = cards.find(c => c.code === cardCode);
+            
+            if (!card) {
+                card = { 
+                    code: cardCode, 
+                    deviceId: deviceId,
+                    createdAt: new Date().toISOString(),
+                    firstUsedAt: new Date().toISOString(),
+                    testCount: 0
+                };
+                cards.push(card);
+            } else {
+                if (card.deviceId && card.deviceId !== deviceId) {
+                    alert('该卡号已在其他设备使用');
+                    return;
+                }
+                
+                if (!card.deviceId) {
+                    card.deviceId = deviceId;
+                    card.firstUsedAt = new Date().toISOString();
+                }
+            }
+            
+            card.testCount = (card.testCount || 0) + 1;
+            card.lastUsedAt = new Date().toISOString();
+            
+            localStorage.setItem('darkCards', JSON.stringify(cards));
+            
+            currentCard = card;
+            showTestPage();
+        }
+        
+        function showTestPage() {
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.remove('hidden');
+            document.getElementById('fullReportPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
 
-            <div class="talent-grid">
-                <div class="talent-item">
-                    <div class="icon">🗺️</div>
-                    <div class="name">空间</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">💬</div>
-      待             <div class="name">语言</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">🧮</div>
-                    <div class="name">逻辑</div>
-                </div>
-                <div class="talent-item">
-  待               <div class="icon">🎨</div>
-                    <div class="name">绘画</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">✨</div>
-                    <div class="name">美学</div>
-                </div>
-      待         <div class="talent-item">
-                    <div class="icon">🎵</div>
-                    <div class="name">音乐</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">👥</div>
-                    <div class="name">人际</div>
-      待         </div>
-                <div class="talent-item">
-                    <div class="icon">💡</div>
-                    <div class="name">创造</div>
-                </div>
-      待         <div class="talent-item">
-                    <div class="icon">🏃</div>
-                    <div class="name">动觉</div>
-                </div>
-                <div class="talent-item">
-                    <div class="icon">🧘</div>
-                    <div class="name">内省</div>
-      待         </div>
-            </div>
+            currentPage = 'test';
+            currentQuestion = 0;
+            answers = new Array(40).fill(0);
+            renderQuestion();
+        }
+        
+        function renderQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = `Q${currentQuestion + 1}: ${question.text}`;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                if (answers[currentQuestion] === index + 1) {
+                    optionDiv.classList.add('selected');
+                }
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index + 1);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            const progress = ((currentQuestion + 1) / 40) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `第${currentQuestion + 1}题 / 共40题`;
+            
+            document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'block' : 'none';
+            document.getElementById('nextBtn').textContent = currentQuestion === 39 ? '完成测评 ✓' : '下一题 →';
+        }
+        
+        function selectOption(value) {
+            answers[currentQuestion] = value;
+            setTimeout(() => {
+                if (currentQuestion < 39) {
+                    nextQuestion();
+                } else {
+                    renderQuestion();
+                }
+            }, 200);
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+        
+        function nextQuestion() {
+            if (answers[currentQuestion] === 0) {
+                alert('请选择一个选项');
+                return;
+            }
+            
+            if (currentQuestion < 39) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+        
+        function calculateResult() {
+            const dimensionScores = [0, 0, 0, 0];
+            const dimensionCounts = [10, 10, 10, 10];
+            
+            questions.forEach((q, i) => {
+                let score = answers[i];
+                if (q.reverse) {
+                    score = 6 - score;
+                }
+                dimensionScores[q.dimension] += score;
+            });
+            
+            const finalScores = dimensionScores.map((score, i) => 
+                Math.round((score / (dimensionCounts[i] * 5)) * 100)
+            );
+            
+            const totalScore = Math.round(finalScores.reduce((a, b) => a + b, 0) / 4);
+            
+            let level, icon, desc;
+            if (totalScore >= 70) {
+                level = '黑暗君主';
+                icon = '👿';
+                desc = '你的D因子得分极高，展现出强烈的黑暗人格特质。你善于操控、追求权力，很少被情感左右。';
+            } else if (totalScore >= 50) {
+                level = '魔丸体质';
+                icon = '🔥';
+                desc = '你的D因子得分较高，在人格上展现出明显的自主性和竞争意识，能在自我实现和人际关系之间找到平衡。';
+            } else if (totalScore >= 30) {
+                level = '平衡型人格';
+                icon = '⚖️';
+                desc = '你的D因子得分中等，既有一定的自我保护意识，也保持着对他人的同理心。';
+            } else {
+                level = '天使型人格';
+                icon = '😇';
+                desc = '你的D因子得分较低，展现出高度的同理心和利他倾向，很少表现出黑暗人格特质。';
+            }
 
-            <div class="features-box">
-                <h3>测评包含:</h3>
-               <ul>
-      待           <li>10大天赋维度全面分析 </li>
-                    <li>40道专业测试题目 </li>
-                      <li>个性化能力雷达图 </li>
-      待               <li><strong style="color:#d63031;">50+职业推荐+成长路径 (¥4.9解锁)</strong></li>
-                </ul>
-            </div>
+            sessionStorage.setItem('testResult', JSON.stringify({
+                scores: finalScores,
+                totalScore: totalScore,
+                level: level,
+                icon: icon,
+                desc: desc
+            }));
+            
+            showFreeResult();
+        }
+        
+        function showFreeResult() {
+            const result = JSON.parse(sessionStorage.getItem('testResult'));
+            
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.add('hidden');
+            document.getElementById('fullReportPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
 
-            <div class="card-input">
-                <input type="text" id="cardCode" placeholder="请输入测评卡号" maxlength="20">
-                <div class="error-message" id="errorMessage">卡密错误或已使用</div>
-  待         </div>
-
-            <button class="btn-start" onclick="verifyCard()">开始测评</button>
-
-            <div class="admin-link">
-  待             <a href="#" onclick="showAdminPanel(); return false;">管理员入口</a>
-            </div>
-        </div>
-
-                <div id="testPage" class="test-page">
-            <div class="progress-bar">
-      待         <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-            </div>
-            <div class="progress-text" id="progressText">准备开始...</div>
-            <div class="question-card" id="questionCard"></div>
-      待     </div>
-
-                <div id="resultPage" class="result-page">
-            <div class="result-card">
-                <div class="result-header">
-  待                 <h2>🎉 恭喜完成测试!</h2>
-                    <p id="resultName">你的天赋分析报告</p>
-                </div>
-
-                <div class="chart-container">
-  待                 <canvas id="radarChart"></canvas>
-                </div>
-
-<div class="score-bars-container" id="scoreBarsContainer">
-    </div>
-
-                <div class="unlock-section">
-               <div class="unlock-title" style="font-size: 20px; line-height: 1.6; color: #2d3436;">
-    您的基础版结果已出 👇<br>
-    如需完整的 <strong style="color: #d63031;">50+职业推荐</strong> 和 <strong style="color: #d63031;">专属行动方案</strong>，可付费解锁：
-</div>
-                    <div class="unlock-features">
-    待                 <div class="unlock-feature">10个维度完整详细分析(每项500字深度解读)</div>
-                        <div class="unlock-feature">专属职业发展建议(50+精准职业匹配)</div>
-    待                 <div class="unlock-feature">性格优势提升方案(可落地执行的具体行动)</div>
-                        <div class="unlock-feature">个性化成长路径规划</div>
-    待                 <div class="unlock-feature">各维度学习资源推荐</div>
-                    </div>
-                    <div class="price">¥4.9</div>
-      待               <p style="color: #2d3436; font-size: 14px; margin-bottom: 20px;">
-                        ⏰ 限时优惠价!原价29.9元
-                    </p>
-<div class="payment-section">
-    <div class="quick-pay-buttons">
-<a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" class="payment-btn alipay">
-  待         <span class="icon">⚡</span> 支付宝快捷支付
-        </a>
-        <a href="javascript:void(0);" onclick="showWechatScan()" class="payment-btn wechat">
-            <span class="icon">⚡</span> 微信快捷支付
-    待     </a>
-    </div>
-
-    <div class="divider-or"><span>或</span></div>
-
-    <div class="scan-payment">
-        <div class="scan-title">📱 扫码支付</div>
-        <div class="qr-code-grid">
-            <div class="qr-code-item">
-      待         <img src="wechat_qrcode.jpg" alt="微信收款码" id="wechatQR">
-                <a href="wechat_qrcode.jpg" download="wechat_pay_qr.jpg" class="btn-save">
-                    保存微信码
-                </a>
-            </div>
-            <div class="qr-code-item">
-    待             <img src="alipay_qrcode.png" alt="支付宝收款码" id="alipayQR">
-                <a href="alipay_qrcode.png" download="alipay_pay_qr.png" class="btn-save">
-    待               保存支付宝码
-                </a>
-            </div>
-        </div>
-        <div class="scan-tip">
-  待         💡 保存后打开APP → 扫一扫 → 相册选择
-        </div>
-    </div>
-
-    <div class="divider-or"><span>或</span></div>
-
-   <div class="transfer-payment">
-  待     <div class="transfer-title">💳 复制账号转账</div>
-    <div class="copy-item">
-        <span id="wechatID">jsh9109</span>
-  待     <button onclick="copyToClipboard('jsh9109', this)">复制微信</button>
-    </div>
-    <div class="copy-item">
-        <span id="alipayID">313360631@qq.com</span>
-  待     <button onclick="copyToClipboard('313360631@qq.com', this)">复制支付宝</button>
-    </div>
-</div>
-</div>
-
-                    <div class="upload-section">
-  待                     <label for="paymentProof" class="upload-label">
-                            📸 上传付款截图,立即查看详细报告
-    待                 </label>
-                        <input type="file" id="paymentProof" accept="image/*" onchange="handlePaymentProof(event)">
-                        <img id="previewImage" class="preview-image" alt="付款截图预览">
-    待               </div>
-                </div>
-            </div>
-        </div>
-
-                <div id="detailedPage" class="detailed-page">
-    待         <div class="result-card">
-                <div class="result-header">
-  待                 <h2>✨ 完整深度分析报告</h2>
-                    <p id="detailedName">你的天赋详细解读</p>
-  待             </div>
-
-                <div class="chart-container">
-    待               <canvas id="radarChart2"></canvas>
-                </div>
-
-                <div class="detailed-analysis">
-  待                 <div class="analysis-section">
-    待                   <h3 class="analysis-title">📊 综合天赋分析</h3>
-              待         <div class="analysis-content" id="overallAnalysis"></div>
-                    </div>
-
-          待         <div class="analysis-section">
-                        <h3 class="analysis-title">💼 职业发展建议</h3>
-                        <div class="analysis-content" id="careerAdvice"></div>
-    待                 <div class="analysis-section">
-                        <h3 class="analysis-title">🎯 核心优势与提升方向</h3>
-                        <div class="analysis-content" id="strengthsAnalysis"></div>
-    待               </div>
-
-                    <div class="analysis-section">
-    待                   <h3 class="analysis-title">📈 个性化成长路径</h3>
-                        <div class="analysis-content" id="growthPath"></div>
-                    </div>
-      待         </div>
-
-                <div class="highlight-box" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-    待               <p style="font-size: 16px; margin-bottom: 10px;">🎁 感谢您的支持!</p>
-                    <p style="font-size: 14px; opacity: 0.9;">建议保存此页面,随时查看您的专属报告</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const dimensionNames = {
-    待         'A': '空间',
-            'B': '语言',
-            'C': '逻辑-算数',
-    待         'D': '绘画',
-            'E': '美学',
-            'F': '音乐',
-            'G': '人际',
-            'H': '创造',
-            'I': '身体-动觉',
-  待         'J': '内省'
-        };
-
-        const questions = [
-            // 空间天赋 (A)
-            { id: 1, text: '我能够轻松地在脑海中想象三维物体的样子', dimension: 'A', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         { id: 2, text: '我很少迷路,方向感很强', dimension: 'A', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 3, text: '我喜欢拼图、积木等需要空间思维的游戏', dimension: 'A', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 4, text: '我能够快速判断物体之间的距离和位置关系', dimension: 'A', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         
-            // 语言天赋 (B)
-            { id: 5, text: '我擅长用语言表达自己的想法和感受', dimension: 'B', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 6, text: '我喜欢阅读各类书籍,阅读速度较快', dimension: 'B', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         { id: 7, text: '我能够轻松记住新学的词汇和表达方式', dimension: 'B', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 8, text: '我喜欢写作,能够流畅地组织文字', dimension: 'B', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         
-            // 逻辑-数学天赋 (C)
-            { id: 9, text: '我擅长数学计算和逻辑推理', dimension: 'C', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 10, text: '我喜欢解决复杂的问题和谜题', dimension: 'C', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 11, text: '我能够快速发现事物之间的规律和模式', dimension: 'C', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 12, text: '我喜欢用数据和事实来支持我的观点', dimension: 'C', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         
-            // 绘画天赋 (D)
-            { id: 13, text: '我喜欢画画,能够准确地描绘我看到的事物', dimension: 'D', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         { id: 14, text: '我对线条、形状和构图有较强的感知力', dimension: 'D', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 15, text: '我能够通过视觉艺术表达情感和想法', dimension: 'D', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 16, text: '我经常关注周围环境的视觉细节', dimension: 'D', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           
-            // 美学天赋 (E)
-            { id: 17, text: '我对色彩搭配和视觉美感很敏感', dimension: 'E', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         { id: 18, text: '我能够欣赏不同艺术风格的美', dimension: 'E', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 19, text: '我喜欢设计和装饰空间,追求美的体验', dimension: 'E', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 20, text: '我对时尚、设计等美学领域很感兴趣', dimension: 'E', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           
-            // 音乐天赋 (F)
-            { id: 21, text: '我对音乐节奏和旋律很敏感', dimension: 'F', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-    待         { id: 22, text: '我能够轻松地学会唱歌或演奏乐器', dimension: 'F', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 23, text: '音乐能够深深地触动我的情感', dimension: 'F', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 24, text: '我喜欢创作或改编音乐', dimension: 'F', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           
-            // 人际天赋 (G)
-            { id: 25, text: '我能够轻松地与不同类型的人交流', dimension: 'G', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 26, text: '我擅长理解他人的情绪和需求', dimension: 'G', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 27, text: '我喜欢团队合作,能够协调不同意见', dimension: 'G', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 28, text: '朋友们经常向我寻求建议和帮助', dimension: 'G', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           
-            // 创造天赋 (H)
-            { id: 29, text: '我经常有新奇的想法和创意', dimension: 'H', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 30, text: '我喜欢尝试新事物,不怕失败', dimension: 'H', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 31, text: '我能够从不同角度思考问题', dimension: 'H', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 32, text: '我擅长将不同的想法组合创新', dimension: 'H', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            
-            // 身体-动觉天赋 (I)
-            { id: 33, text: '我的身体协调性和运动能力较强', dimension: 'I', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           { id: 34, text: '我喜欢通过身体活动来表达自己', dimension: 'I', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 35, text: '我擅长手工制作和精细操作', dimension: 'I', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-  待           { id: 36, text: '我能够快速学会新的运动技能', dimension: 'I', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            
-            // 内省天赋 (J)
-            { id: 37, text: '我经常反思自己的行为和想法', dimension: 'J', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 38, text: '我清楚地了解自己的优势和劣势', dimension: 'J', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-            { id: 39, text: '我喜欢独处,思考人生和价值观', dimension: 'J', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-      待       { id: 40, text: '我能够客观地评价自己的表现', dimension: 'J', options: ['完全不符合', '不太符合', '一般', '比较符合', '非常符合'] },
-        ];
-
-        let currentQuestion = 0;
-        let answers = {};
-        let currentCard = '';
-        let testResult = null;
-
-        // 验证卡密
-  /* --- [V3.1] 修复天赋测评的卡密绑定逻辑 --- */
-function verifyCard() {
-    const cardCode = document.getElementById('cardCode').value.trim().toUpperCase();
-    const errorDiv = document.getElementById('errorMessage');
-
-    if (!cardCode) {
-        errorDiv.textContent = '请输入卡密';
-        errorDiv.style.display = 'block';
-        return;
-    }
-// [V3.3] 定义万能卡密
-    const MASTER_CODE = "GEMINI-MASTER";
-
-    // 检查是否为万能卡密，如果是，则跳过所有绑定和验证
-    if (cardCode === MASTER_CODE) {
-        currentCard = MASTER_CODE;
-        // 天赋测评使用 style.display 切换页面
-        document.getElementById('verifyPage').style.display = 'none'; 
-        document.getElementById('testPage').style.display = 'block';
-        showQuestion(); 
-        return; // 立即退出 verifyCard 函数
-    }
-    // 从localStorage获取卡密列表 (使用 'talentCards' 这个key)
-    let cards = JSON.parse(localStorage.getItem('talentCards') || '[]');
-    
-    // 检查格式 (保持原来的格式)
-    const cardFormat = /^TF-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
-    if (!cardFormat.test(cardCode)) {
-         // 也允许非TF格式的卡号 (这是我们后来加的)
-         if (!/^[A-Z0-9]{8,20}$/.test(cardCode)) {
-            errorDiv.textContent = '卡密格式不正确';
-            errorDiv.style.display = 'block';
-            return;
-         }
-    }
-    
-    // [V3.1] 关键：调用您代码中已有的 getDeviceFingerprint() 函数
-    const deviceId = getDeviceFingerprint(); 
-    
-    let card = cards.find(c => c.code === cardCode);
-
-    // --- [V3.1] 逻辑修正开始 ---
-    if (!card) {
-        // 如果卡号不存在，就创建它，并绑定到当前设备
-        card = { 
-            code: cardCode, 
-            deviceId: deviceId, // 立即绑定
-            createdAt: new Date().toISOString(),
-            firstUsedAt: new Date().toISOString(),
-            testCount: 0 // 初始测试次数
-        };
-        cards.push(card);
-
-    } else {
-        // 如果卡号存在，检查设备ID
-        if (card.deviceId && card.deviceId !== deviceId) {
-            errorDiv.textContent = '该卡密已在其他设备使用，无法在本设备使用';
-            errorDiv.style.display = 'block';
-            return;
-        }
-        
-        // (兼容旧卡) 如果找到卡，但它没有deviceId，就绑定它
-        if (!card.deviceId) {
-            card.deviceId = deviceId;
-            card.firstUsedAt = new Date().toISOString();
-        }
-    }
-    // --- [V3.1] 逻辑修正结束 ---
-
-    // 无论如何，都更新测试次数和最后使用时间
-    card.testCount = (card.testCount || 0) + 1;
-    card.lastUsedAt = new Date().toISOString();
-    
-    // 关键修复：使用 'talentCards'
-    localStorage.setItem('talentCards', JSON.stringify(cards));
-    
-    // 验证成功，保存当前卡密
-    currentCard = cardCode;
-    sessionStorage.setItem('currentCard', cardCode);
-
-    // 开始测评
-    document.getElementById('verifyPage').style.display = 'none';
-    document.getElementById('testPage').style.display = 'block';
-    showQuestion();
-}
-        // 生成设备指纹函数
-function getDeviceFingerprint() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillText('fingerprint', 2, 2);
-    const canvasData = canvas.toDataURL();
-    
-    const fingerprint = [
-        navigator.userAgent,
-        navigator.language,
-        screen.width + 'x' + screen.height,
-        screen.colorDepth,
-        new Date().getTimezoneOffset(),
-        canvasData.slice(-50) // Canvas指纹
-    ].join('|');
-    
-    // 生成简单哈希
-    let hash = 0;
-    for (let i = 0; i < fingerprint.length; i++) {
-        const char = fingerprint.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    
-    return 'device_' + Math.abs(hash).toString(36);
-}
-// 生成设备指纹函数
-function getDeviceFingerprint() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillText('fingerprint', 2, 2);
-    const canvasData = canvas.toDataURL();
-    
-    const fingerprint = [
-        navigator.userAgent,
-        navigator.language,
-        screen.width + 'x' + screen.height,
-        screen.colorDepth,
-        new Date().getTimezoneOffset(),
-        canvasData.slice(-50) // Canvas指纹
-    ].join('|');
-    
-    // 生成简单哈希
-    let hash = 0;
-    for (let i = 0; i < fingerprint.length; i++) {
-        const char = fingerprint.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    
-    return 'device_' + Math.abs(hash).toString(36);
-}
-
-        // 管理员面板
-        function showAdminPanel() {
-            const password = prompt('请输入管理员密码:');
-            if (password === 'lss900201') {
-                showCardManagement();
-            } else if (password !== null) {
-                alert('密码错误');
-            }
-        }
-
-        function showCardManagement() {
-            const count = prompt('生成多少个卡密?(1-1000)');
-            if (!count || count < 1 || count > 1000) return;
-
-            const cards = JSON.parse(localStorage.getItem('talentCards') || '[]');
-            const newCards = [];
-
-            for (let i = 0; i < parseInt(count); i++) {
-                const code = generateCardCode();
-                cards.push({
-                    code: code,
-                    used: false,
-                    createdAt: new Date().toISOString()
-                });
-                newCards.push(code);
-            }
-
-            localStorage.setItem('talentCards', JSON.stringify(cards));
-
-            const result = newCards.join('\n');
-            const download = confirm(`生成成功!\n\n${result}\n\n是否下载卡密列表?`);
-            
-            if (download) {
-                downloadCards(newCards);
-            } else {
-                alert('请复制保存卡密:\n\n' + result);
-            }
-        }
-
-        function generateCardCode() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-            let code = 'TF-';
-            for (let i = 0; i < 4; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            code += '-';
-            for (let i = 0; i < 4; i++) {
-                code += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return code;
-        }
-
-        function downloadCards(cards) {
-            const text = cards.join('\n');
-            const blob = new Blob([text], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '测评卡密-' + new Date().toISOString().split('T')[0] + '.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function showQuestion() {
-            const question = questions[currentQuestion];
-            const progress = ((currentQuestion) / questions.length) * 100;
-            
-            document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('progressText').textContent = `第 ${currentQuestion + 1} / ${questions.length} 题`;
-
-            const card = document.getElementById('questionCard');
-            card.innerHTML = `
-                <div class="question-number">问题 ${currentQuestion + 1}/${questions.length}</div>
-                <div class="question-text">${question.text}</div>
-                <div class="options" id="options">
-                    ${question.options.map((opt, idx) => `
-                        <div class="option" onclick="selectOption(${idx})" data-value="${idx}">
-                            ${opt}
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="buttons">
-                    ${currentQuestion > 0 ? '<button class="btn-prev" onclick="prevQuestion()">上一题</button>' : '<div></div>'}
-                    <button class="btn-next" id="nextBtn" onclick="nextQuestion()" disabled>
-                        ${currentQuestion < questions.length - 1 ? '下一题' : '完成测评'}
-                    </button>
-                </div>
-            `;
-
-            if (answers[question.id] !== undefined) {
-                const options = document.querySelectorAll('.option');
-                options[answers[question.id]].classList.add('selected');
-                document.getElementById('nextBtn').disabled = false;
-            }
-        }
-
-function selectOption(value) {
-            const question = questions[currentQuestion];
-            answers[question.id] = value; // value 是 0-4, 正确
-
-            // 1. 立即高亮显示选中项
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            // 'event.target' 会自动获取用户点击的那个选项
-            event.target.classList.add('selected');
-            
-            // 2. 自动跳转 (添加一个短暂延迟，让用户能看到自己的选择)
-            setTimeout(() => {
-                if (currentQuestion < questions.length - 1) {
-                    nextQuestion();
-                } else {
-                    // 这是最后一道题，调用完成函数
-                    completeTest();
-                }
-            }, 200); // 延迟200毫秒 (0.2秒)，体验更真实
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion();
-      待       }
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion();
-            } else {
-                completeTest();
-            }
-        }
-
-        function completeTest() {
-            const scores = {};
-  待           const dimensionCounts = {};
-
-            questions.forEach(q => {
-    const answer = answers[q.id];
-    if (answer !== undefined) {
-        if (!scores[q.dimension]) {
-  待         scores[q.dimension] = 0;
-            dimensionCounts[q.dimension] = 0;
-        }
-        // 改为1-5分，乘以4变成4-20分
-        scores[q.dimension] += (answer + 1);
-        dimensionCounts[q.dimension]++;
-    }
-});
-
-// 计算平均分
-Object.keys(scores).forEach(dim => {
-    if (dimensionCounts[dim] > 0) {
-        scores[dim] = Math.round(scores[dim] / dimensionCounts[dim] * 4);
-    }
-});
-            testResult = {
-  待             cardCode: currentCard,
-                scores: scores,
-                answers: answers,
-                completedAt: new Date().toISOString()
-            };
-
-            sessionStorage.setItem('testResult', JSON.stringify(testResult));
-            showResult();
-        }
-
-function showResult() {
-            document.getElementById('testPage').style.display = 'none';
-            document.getElementById('resultPage').style.display = 'block';
-
-            const result = testResult || JSON.parse(sessionStorage.getItem('testResult'));
-            const scores = result.scores;
-
-  待           const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-            const top3 = sortedScores.slice(0, 3).map(s => dimensionNames[s[0]]);
-
-            document.getElementById('resultName').textContent = `你最具有 ${top3.join('、')} 天赋`;
-            
-            // 添加免费版基础分析... (保留原来的 freeAnalysis 代码)
-            // ... (此处省略 freeAnalysis 的生成代码，请确保在您的文件里这块代码是完整的) ...
-            const freeAnalysis = document.createElement('div');
-            freeAnalysis.style.cssText = 'background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 25px 0;';
-            freeAnalysis.innerHTML = `
-                <h3 style="color: #667eea; margin-bottom: 15px;">🎯 你的天赋特点（基础版）</h3>
-    待               <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-                    <p style="font-size: 16px; line-height: 1.8; color: #333;">
-    待                   <strong>核心优势：</strong>你在 <strong style="color: #667eea;">${top3[0]}</strong> 方面表现最为突出（${sortedScores[0][1]}分），
-                        这意味着你在相关领域有天然的优势。其次是 <strong style="color: #667eea;">${top3[1]}</strong>（${sortedScores[1][1]}分）
-  待                     和 <strong style="color: #667eea;">${top3[2]}</strong>（${sortedScores[2][1]}分）。
-                    </p>
-      待         </div>
-                <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
-  待                 <p style="font-size: 15px; line-height: 1.8; color: #555;">
-                        <strong>性格类型：</strong>${getPersonalityType(sortedScores[0][0])}的人
-                    </p>
-    待         </div>
-                <div style="background: white; padding: 20px; border-radius: 10px;">
-  待                 <p style="font-size: 15px; line-height: 1.8; color: #555;">
-                        <strong>推荐方向：</strong>${getBasicCareerSuggestion(sortedScores[0][0])}
-    待               </p>
-                </div>
-                <div style="text-align: center; margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 10px;">
-    待               <p style="color: #856404; font-size: 14px;">
-      待                 💡 想查看完整的50+职业推荐、详细能力分析和成长建议？<br>
-                        请解锁下方的完整版报告！
-    待               </p>
-                </div>
-            `;
-            const chartContainer = document.querySelector('.chart-container');
-    待         chartContainer.parentNode.insertBefore(freeAnalysis, chartContainer.nextSibling);
-            
-    待         drawRadarChart('radarChart', scores);
-
-            // [V3.3 新增] 替换为条形图逻辑
-            const scoreBarsContainer = document.getElementById('scoreBarsContainer');
-  待           scoreBarsContainer.innerHTML = '';
-            
-            Object.keys(dimensionNames).forEach(dim => {
-                const score = scores[dim]; // 4-20
-  待             const percentage = (score / 20) * 100; // 0-100%
-                
-                let interpretation = '完全不擅长';
-                if (score >= 15) interpretation = '非常擅长';
-  待             else if (score >= 12) interpretation = '有些擅长';
-                else if (score >= 8) interpretation = '不太擅长';
-
-                scoreBarsContainer.innerHTML += `
-                    <div class="score-row">
-  待                     <div class="score-dim">${dimensionNames[dim]}</div>
-                        <div class="score-bar-wrapper">
-    待                       <div class="score-bar-fill" style="width: ${percentage}%">
-    待                           <span class="score-bar-score">${score}分</span>
-                            </div>
-        待               </div>
-                        <div class="score-text-label" style="color: ${score >= 15 ? '#667eea' : '#999'};">${interpretation}</div>
-  待                 </div>
-            });
-
-            window.scrollTo(0, 0);
-        }
-
-       function drawRadarChart(canvasId, scores) {
-  待     const ctx = document.getElementById(canvasId);
-    const labels = Object.keys(dimensionNames).map(k => dimensionNames[k]);
-  待     const data = Object.keys(dimensionNames).map(k => scores[k]);
-    
-    // 检测设备类型
-    const isMobile = window.innerWidth <= 768;
-
-    new Chart(ctx, {
-  待     type: 'radar',
-        data: {
-  待         labels: labels,
-            datasets: [{
-    待             label: '天赋得分',
-                data: data,
-                backgroundColor: 'rgba(102, 126, 234, 0.2)',
-    待             borderColor: 'rgba(102, 126, 234, 1)',
-                borderWidth: 2,
-      待           pointBackgroundColor: 'rgba(102, 126, 234, 1)',
-                pointBorderColor: '#fff',
-                pointBorderWidth: 2,
-    待             pointRadius: isMobile ? 3 : 5,
-                pointHoverRadius: isMobile ? 5 : 7
-            }]
-        },
-        options: {
-  待         responsive: true,
-            maintainAspectRatio: true,
-            aspectRatio: isMobile ? 1 : 1.1,
-    待         layout: {
-                padding: isMobile ? {
-  待                 top: 15,
-          待         bottom: 15,
-                    left: 5,
-    待               right: 5
-                } : {
-  待                 top: 30,
-                    bottom: 30,
-  待                 left: 30,
-                    right: 30
-                }
-            },
-  待           scales: {
-    待             r: {
-  待                   beginAtZero: true,
-                    min: 0,
-                    max: 20,
-    待               ticks: {
-                        stepSize: 5,
-  待                     font: { 
-      待                     size: isMobile ? 9 : 11,
-                            weight: '500'
-          待             },
-                        color: '#999',
-    待                   backdropColor: 'rgba(255, 255, 255, 0.75)',
-                        backdropPadding: 2,
-  待                     showLabelBackdrop: true
-                    },
-      待             pointLabels: {
-        待             font: { 
-          待               size: isMobile ? 11 : 13, 
-                  待         weight: 'bold',
-                            family: "'Microsoft YaHei', Arial, sans-serif"
-                        },
-  待                 color: '#333',
-                        padding: isMobile ? 8 : 15
-                    },
-    待               grid: {
-                        color: 'rgba(102, 126, 234, 0.15)',
-    待                 lineWidth: 1
-                    },
-                    angleLines: {
-  待                 color: 'rgba(102, 126, 234, 0.15)',
-                        lineWidth: 1
-                    }
-                }
-            },
-  待           plugins: {
-                legend: { 
-  待                   display: false 
-                },
-                tooltip: {
-  待                 enabled: true,
-                    backgroundColor: 'rgba(102, 126, 234, 0.9)',
-  待                 titleFont: {
-                        size: 13,
-      待                 weight: 'bold'
-                    },
-                    bodyFont: {
-  待                     size: 12
-                    },
-    待               padding: 10,
-                    cornerRadius: 6,
-    待               callbacks: {
-  待                       label: function(context) {
-                            return '得分: ' + context.parsed.r + ' 分';
-      待                 }
-                    }
-                }
-            }
-        }
-    });
-}
+            document.getElementById('archetypeIcon').textContent = result.icon;
+            document.getElementById('archetypeName').textContent = result.level;
+            document.getElementById('typeName').textContent = result.level;
+            document.getElementById('typeDesc').textContent = result.desc;
+            
+            drawRadarChart('radarChart', result.scores);
+            
+            const scoresList = document.getElementById('scoresList');
+            const dimensionNames = ['马基雅维利主义', '自恋倾向', '精神变态', '施虐倾向'];
+            const dimensionIcons = ['🎭', '👑', '🔥', '⚡'];
+            
+            scoresList.innerHTML = '';
+            result.scores.forEach((score, i) => {
+                const scoreItem = document.createElement('div');
+                scoreItem.className = 'score-item';
+                scoreItem.innerHTML = `
+                    <div class="score-item-name">${dimensionIcons[i]} ${dimensionNames[i]}</div>
+                    <div class="score-item-value">${score}%</div>
+                    <div class="score-item-desc">${score > 60 ? '倾向明显' : score > 40 ? '中等水平' : '倾向较低'}</div>
+                `;
+                scoresList.appendChild(scoreItem);
+            });
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function drawRadarChart(canvasId, scores) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            const isMobile = window.innerWidth <= 768;
+            
+            const existingChart = Chart.getChart(canvasId);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['马基雅维利主义', '自恋倾向', '精神变态', '施虐倾向'],
+                    datasets: [{
+                        label: '你的得分',
+                        data: scores,
+                        backgroundColor: 'rgba(255, 182, 193, 0.3)',
+                        borderColor: '#FFB6C1',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#FF69B4',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: isMobile ? 1 : 1.2,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {size: isMobile ? 9 : 11}
+                            },
+                            pointLabels: {
+                                font: {size: isMobile ? 10 : 12, weight: 'bold'},
+                                color: '#FF69B4'
+                            },
+                            grid: {color: '#FFE5F0'},
+                            angleLines: {color: '#FFE5F0'}
+                        }
+                    },
+                    plugins: {
+                        legend: {display: false}
+                    }
+                }
+            });
+        }
+        
+        function handlePaymentProof(event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                setTimeout(() => {
+                    alert('✅ 付款截图已上传！\n\n完整报告已解锁，请查看下方内容。');
+                    showFullReport();
+                }, 500);
+                
+                saveSimpleOrder();
+            }
+        }
+        
+        function saveSimpleOrder() {
+            const orders = JSON.parse(localStorage.getItem('darkOrders') || '[]');
+            orders.unshift({
+                id: Date.now(),
+                amount: 4.9,
+                product: '黑暗人格完整报告',
+                time: new Date().toISOString(),
+                status: '已完成'
+            });
+            localStorage.setItem('darkOrders', JSON.stringify(orders));
+        }
+        
+        function showFullReport() {
+            const result = JSON.parse(sessionStorage.getItem('testResult'));
+            
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.add('hidden');
+            document.getElementById('fullReportPage').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            
+            document.getElementById('fullDarkScore').textContent = result.totalScore + '%';
+            document.getElementById('fullDarkLevel').textContent = result.level + ' - D因子' + result.totalScore + '%';
+            
+            drawRadarChart('fullRadarChart', result.scores);
+            
+            const dimensionNames = ['马基雅维利主义', '自恋倾向', '精神变态', '施虐倾向'];
+            const highest = result.scores.indexOf(Math.max(...result.scores));
+            
+            const analysisTexts = {
+                0: '你的马基雅维利主义得分较高，这意味着你善于策略性思考，懂得在复杂情境中权衡利弊。你可能在政治、商业等需要谋略的领域表现出色。',
+                1: '你的自恋倾向较为明显，你对自我有较高的评价，渴望得到他人的认可和赞美。这种特质能帮助你保持自信，但也需要注意倾听他人意见。',
+                2: '你在精神变态维度得分较高，这表明你能够理性地控制情绪，不容易被感情左右。你在高压环境下能保持冷静，做出理性决策。',
+                3: '你的施虐倾向得分较高，这可能表现为喜欢掌控局面，或在竞争中享受优势地位。建议培养更多同理心，平衡竞争与合作。'
+            };
+            
+            const fullAnalysis = document.getElementById('fullAnalysis');
+            if (fullAnalysis) {
+                const personalizedText = analysisTexts[highest] || '你的人格特质独特且平衡。';
+                const firstP = fullAnalysis.querySelector('p');
+                if (firstP) {
+                    firstP.textContent = personalizedText;
+                }
+            }
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = '已复制!';
+                btn.style.background = '#07C160';
+                setTimeout(() => {
+                    btn.textContent = orig;
+                    btn.style.background = '#FFB6C1';
+                }, 2000);
+            });
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+        }
+        
+        function verifyAdmin() {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadAdminStats();
+            } else {
+                alert('密码错误');
+            }
+        }
+        
+        function loadAdminStats() {
+            const cards = JSON.parse(localStorage.getItem('darkCards') || '[]');
+            const orders = JSON.parse(localStorage.getItem('darkOrders') || '[]');
+            
+            document.getElementById('adminContent').innerHTML = `
+                <div style="background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #FF69B4; margin-bottom: 15px;">📊 数据统计</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2em; color: #FF69B4; font-weight: bold;">${cards.length}</div>
+                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">卡密总数</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2em; color: #FF69B4; font-weight: bold;">${orders.length}</div>
+                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">付费订单</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #FF69B4; margin: 25px 0 12px 0;">最近订单记录</h3>
+                <div style="background: #FFF5FA; padding: 15px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+                    ${orders.length === 0 ? 
+                        '<p style="text-align: center; color: #999; padding: 20px;">暂无订单</p>' :
+                        orders.slice(0, 20).map(o => `
+                            <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                                <div style="font-weight: bold; color: #333; margin-bottom: 5px;">¥${o.amount} - ${o.product}</div>
+                                <div style="font-size: 0.85em; color: #999;">${new Date(o.time).toLocaleString()}</div>
+                            </div>
+                        `).join('')
+                    }
+                </div>
+                
+                <h3 style="color: #FF69B4; margin: 25px 0 12px 0;">生成卡密</h3>
+                <div class="input-group">
+                    <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10">
+                </div>
+                <button class="btn btn-primary" onclick="generateCards()">生成卡密</button>
+                
+                <button class="btn btn-secondary" onclick="location.reload()" style="margin-top: 20px;">返回主页</button>
+            `;
+        }
+        
+        function generateCards() {
+            const count = parseInt(document.getElementById('cardCount').value);
+            
+            if (!count || count < 1 || count > 100) {
+                alert('请输入1-100之间的数字');
+                return;
+            }
+            
+            const cards = JSON.parse(localStorage.getItem('darkCards') || '[]');
+            const newCards = [];
+            
+            for (let i = 0; i < count; i++) {
+                newCards.push({
+                    code: generateCardCode(),
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            cards.push(...newCards);
+            localStorage.setItem('darkCards', JSON.stringify(cards));
+            
+            const text = newCards.map(c => c.code).join('\n');
+            const blob = new Blob([text], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `黑暗人格测试卡密_${new Date().getTime()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert(`成功生成${count}个卡密！`);
+            loadAdminStats();
+        }
+        
+        function generateCardCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = 'DARK-';
+            
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            code += '-';
+            
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            return code;
+        }
+        
+        window.onload = function() {
+            const cards = JSON.parse(localStorage.getItem('darkCards') || '[]');
+            if (cards.length === 0) {
+                const testCards = [];
+                for (let i = 0; i < 10; i++) {
+                    testCards.push({
+                        code: generateCardCode(),
+                        createdAt: new Date().toISOString()
+                    });
+                }
+                localStorage.setItem('darkCards', JSON.stringify(testCards));
+                console.log('已生成10个测试卡密，请在管理员后台查看（密码：lss900201）');
+            }
+        };
+    </script>
+</body>
+</html>
