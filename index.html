@@ -16,11 +16,7 @@ var _hmt = _hmt || [];
 </script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -29,10 +25,7 @@ var _hmt = _hmt || [];
             padding: 15px;
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .container { max-width: 800px; margin: 0 auto; }
         
         .card {
             background: white;
@@ -47,535 +40,325 @@ var _hmt = _hmt || [];
         .card:before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
+            top: 0; left: 0; right: 0; height: 5px;
             background: linear-gradient(90deg, #FFB6C1, #DDA0DD, #FFB6C1);
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+        .header { text-align: center; margin-bottom: 35px; }
         
         .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 12px;
-            font-weight: bold;
+            font-size: 2.2em; margin-bottom: 12px; font-weight: bold;
             background: linear-gradient(135deg, #FF69B4 0%, #BA55D3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
-            display: inline-block;
+            position: relative; display: inline-block;
         }
         
-        .header h1:after {
-            content: '✨';
-            position: absolute;
-            right: -30px;
-            top: -5px;
-            font-size: 0.5em;
-        }
-        
-        .header p {
-            color: #666;
-            font-size: 1.05em;
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
+        .header h1:after { content: '✨'; position: absolute; right: -30px; top: -5px; font-size: 0.5em; }
+        .header p { color: #666; font-size: 1.05em; margin-bottom: 8px; line-height: 1.6; }
         
         .badge {
             display: inline-block;
             background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
-            color: white;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-top: 8px;
-            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            color: white; padding: 8px 18px; border-radius: 20px; font-size: 0.85em;
+            margin-top: 8px; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
         }
         
-        .dimensions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
+        .dimensions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0; }
         
         .dimension-card {
             background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
-            padding: 20px;
-            border-radius: 18px;
-            text-align: center;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
+            padding: 20px; border-radius: 18px; text-align: center;
+            transition: all 0.3s; border: 2px solid transparent; position: relative; overflow: hidden;
         }
         
         .dimension-card:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,182,193,0.1) 0%, transparent 70%);
             transition: transform 0.5s;
         }
-        
-        .dimension-card:hover:before {
-            transform: translate(25%, 25%);
-        }
-        
+        .dimension-card:hover:before { transform: translate(25%, 25%); }
         .dimension-card:hover {
-            transform: translateY(-5px);
-            border-color: #FFB6C1;
+            transform: translateY(-5px); border-color: #FFB6C1;
             box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
         }
         
-        .dimension-icon {
-            font-size: 2.5em;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-        
-        .dimension-name {
-            color: #FF69B4;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-        
-        .dimension-desc {
-            color: #888;
-            font-size: 0.85em;
-            line-height: 1.4;
-        }
+        .dimension-icon { font-size: 2.5em; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .dimension-name { color: #FF69B4; font-weight: bold; font-size: 1.1em; margin-bottom: 5px; }
+        .dimension-desc { color: #888; font-size: 0.85em; line-height: 1.4; }
         
         .features-list {
             background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
-            padding: 22px;
-            border-radius: 18px;
-            margin: 25px 0;
-            border-left: 4px solid #FFB6C1;
+            padding: 22px; border-radius: 18px; margin: 25px 0; border-left: 4px solid #FFB6C1;
         }
+        .features-list h3 { color: #FF69B4; margin-bottom: 12px; font-size: 1.2em; }
+        .features-list ul { list-style: none; }
+        .features-list li { padding: 8px 0; color: #666; font-size: 0.95em; border-bottom: 1px dashed #FFE5F0; transition: padding-left 0.3s; }
+        .features-list li:last-child { border-bottom: none; }
+        .features-list li:hover { padding-left: 10px; }
+        .features-list li:before { content: "💖 "; margin-right: 8px; margin-left: 0; }
         
-        .features-list h3 {
-            color: #FF69B4;
-            margin-bottom: 12px;
-            font-size: 1.2em;
-        }
-        
-        .features-list ul {
-            list-style: none;
-        }
-        
-        .features-list li {
-            padding: 8px 0;
-            color: #666;
-            font-size: 0.95em;
-            border-bottom: 1px dashed #FFE5F0;
-            transition: padding-left 0.3s;
-        }
-        
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .features-list li:hover {
-            padding-left: 10px;
-        }
-        
-        .features-list li:before {
-            content: "💖 ";
-            margin-right: 8px;
-margin-left: 0;  /* 👈 新增这行 */
-        }
-        
-        .input-group {
-            margin: 25px 0;
-        }
-        
+        .input-group { margin: 25px 0; }
         .input-group input {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #FFE5F0;
-            border-radius: 15px;
-            font-size: 1em;
-            text-align: center;
-            transition: all 0.3s;
-            background: #FAFAFA;
+            width: 100%; padding: 16px; border: 2px solid #FFE5F0; border-radius: 15px;
+            font-size: 1em; text-align: center; transition: all 0.3s; background: #FAFAFA;
         }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: #FFB6C1;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.15);
-        }
+        .input-group input:focus { outline: none; border-color: #FFB6C1; background: white; box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.15); }
         
         .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 12px;
+            width: 100%; padding: 16px; border: none; border-radius: 15px;
+            font-size: 1.1em; font-weight: bold; cursor: pointer;
+            transition: all 0.3s; margin-top: 12px;
         }
-        
         .btn-primary {
             background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
-            color: white;
-            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+            color: white; box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
         }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255, 182, 193, 0.5); }
+        .btn-primary:active { transform: translateY(-1px); }
+        .btn-secondary { background: white; color: #FF69B4; border: 2px solid #FFB6C1; }
+        .btn-secondary:hover { background: #FFF5FA; }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.5);
-        }
-        
-        .btn-primary:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn-secondary {
-            background: white;
-            color: #FF69B4;
-            border: 2px solid #FFB6C1;
-        }
-        
-        .btn-secondary:hover {
-            background: #FFF5FA;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #FFE5F0;
-            border-radius: 10px;
-            margin-bottom: 18px;
-            overflow: hidden;
-        }
-        
+        .progress-bar { width: 100%; height: 8px; background: #FFE5F0; border-radius: 10px; margin-bottom: 18px; overflow: hidden; }
         .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #FFB6C1 0%, #DDA0DD 100%);
-            transition: width 0.3s;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+            height: 100%; background: linear-gradient(90deg, #FFB6C1 0%, #DDA0DD 100%);
+            transition: width 0.3s; border-radius: 10px; box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
         }
+        .progress-text { color: #FF69B4; text-align: center; font-weight: bold; margin-bottom: 25px; font-size: 1em; }
         
-        .progress-text {
-            color: #FF69B4;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 25px;
-            font-size: 1em;
-        }
+        .question-card { background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%); padding: 25px; border-radius: 20px; margin-bottom: 25px; }
+        .question-text { color: #333; font-size: 1.2em; font-weight: bold; margin-bottom: 20px; line-height: 1.6; }
         
-        .question-card {
-            background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .question-text {
-            color: #333;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
+        .options { display: flex; flex-direction: column; gap: 10px; }
         .option {
-            padding: 15px;
-            background: white;
-            border: 2px solid #FFE5F0;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1em;
-            color: #666;
+            padding: 15px; background: white; border: 2px solid #FFE5F0; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s; font-size: 1em; color: #666;
         }
-        
-        .option:hover {
-            border-color: #FFB6C1;
-            background: #FFF5FA;
-            transform: translateX(5px);
-        }
-        
+        .option:hover { border-color: #FFB6C1; background: #FFF5FA; transform: translateX(5px); }
         .option.selected {
             background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
-            color: white;
-            border-color: #FFB6C1;
-            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            color: white; border-color: #FFB6C1; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
         }
         
         .result-banner {
             background: linear-gradient(135deg, #FF69B4 0%, #BA55D3 100%);
-            color: white;
-            padding: 35px 25px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            overflow: hidden;
+            color: white; padding: 35px 25px; border-radius: 20px; text-align: center;
+            margin-bottom: 25px; position: relative; overflow: hidden;
         }
+        .result-banner:before { content: '✨'; position: absolute; top: 20px; left: 20px; font-size: 2em; opacity: 0.3; }
+        .result-banner:after { content: '💫'; position: absolute; bottom: 20px; right: 20px; font-size: 2em; opacity: 0.3; }
+        .result-banner h2 { font-size: 1.8em; margin-bottom: 12px; }
+        .rpi-score { font-size: 3.5em; font-weight: bold; margin: 18px 0; text-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .rpi-level { display: inline-block; background: rgba(255, 255, 255, 0.25); padding: 10px 25px; border-radius: 25px; font-size: 1.1em; backdrop-filter: blur(10px); }
         
-        .result-banner:before {
-            content: '✨';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2em;
-            opacity: 0.3;
-        }
+        .chart-container { position: relative; height: 380px; margin: 30px 0; background: white; border-radius: 15px; padding: 20px; }
         
-        .result-banner:after {
-            content: '💫';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 2em;
-            opacity: 0.3;
-        }
-        
-        .result-banner h2 {
-            font-size: 1.8em;
-            margin-bottom: 12px;
-        }
-        
-        .rpi-score {
-            font-size: 3.5em;
-            font-weight: bold;
-            margin: 18px 0;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        
-        .rpi-level {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.25);
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            backdrop-filter: blur(10px);
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 380px;
-            margin: 30px 0;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-        }
-        
-        .scores-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 25px 0;
-        }
-        
+        .scores-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 25px 0; }
         .score-item {
             background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
-            padding: 18px;
-            border-radius: 12px;
-            border-left: 4px solid #FFB6C1;
-            transition: transform 0.3s;
+            padding: 18px; border-radius: 12px; border-left: 4px solid #FFB6C1; transition: transform 0.3s;
         }
-        
-        .score-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .score-item-name {
-            color: #FF69B4;
-            font-weight: bold;
-            margin-bottom: 6px;
-            font-size: 0.95em;
-        }
-        
-        .score-item-value {
-            font-size: 1.6em;
-            color: #333;
-            font-weight: bold;
-        }
-        
-        .score-item-desc {
-            color: #999;
-            font-size: 0.85em;
-            margin-top: 4px;
-        }
+        .score-item:hover { transform: translateX(5px); }
+        .score-item-name { color: #FF69B4; font-weight: bold; margin-bottom: 6px; font-size: 0.95em; }
+        .score-item-value { font-size: 1.6em; color: #333; font-weight: bold; }
+        .score-item-desc { color: #999; font-size: 0.85em; margin-top: 4px; }
         
         .type-card {
             background: linear-gradient(135deg, #FFF5FA 0%, #F5F0FF 100%);
-            padding: 25px;
-            border-radius: 18px;
-            margin: 25px 0;
-            border: 2px solid #FFB6C1;
+            padding: 25px; border-radius: 18px; margin: 25px 0; border: 2px solid #FFB6C1;
         }
+        .type-card h3 { color: #FF69B4; font-size: 1.6em; margin-bottom: 12px; }
+        .type-card p { color: #666; line-height: 1.7; font-size: 1em; }
         
-        .type-card h3 {
-            color: #FF69B4;
-            font-size: 1.6em;
-            margin-bottom: 12px;
-        }
+        .characteristics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+        .characteristic-item { background: white; padding: 15px; border-radius: 12px; text-align: center; transition: transform 0.3s; }
+        .characteristic-item:hover { transform: translateY(-3px); }
+        .characteristic-title { color: #FF69B4; font-weight: bold; margin-bottom: 8px; font-size: 0.95em; }
+        .characteristic-list { font-size: 0.85em; color: #666; line-height: 1.5; }
         
-        .type-card p {
-            color: #666;
-            line-height: 1.7;
-            font-size: 1em;
-        }
-        
-        .characteristics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 20px 0;
-        }
-        
-        .characteristic-item {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .characteristic-item:hover {
-            transform: translateY(-3px);
-        }
-        
-        .characteristic-title {
-            color: #FF69B4;
-            font-weight: bold;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-        
-        .characteristic-list {
-            font-size: 0.85em;
-            color: #666;
-            line-height: 1.5;
-        }
-        
+        /* === 优化后的解锁引导区（仿截图3） === */
         .unlock-section {
-            background: linear-gradient(135deg, #FFF0F5 0%, #F0E5FF 100%);
-            padding: 35px 25px;
-            border-radius: 20px;
-            margin: 35px 0;
-            border: 3px solid #FFB6C1;
-            position: relative;
+            background: #FFF0F5;
+            padding: 25px; 
+            border-radius: 20px; 
+            margin: 35px 0; 
+            border: 2px solid #FFB6C1;
+            position: relative; 
             overflow: hidden;
         }
-        
-        .unlock-section:before {
-            content: '🎁';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 3em;
-            opacity: 0.1;
+        .unlock-section h3 { 
+            color: #FF1493; font-size: 1.6em; text-align: center; margin-bottom: 25px; 
+            line-height: 1.4; text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
         
-        .unlock-section h3 {
-            color: #FF1493;
-            font-size: 1.7em;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.5;
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
         }
-        
-        .price-tag {
-            text-align: center;
+        .comp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5px;
+            border-bottom: 1px dashed #FFE5F0;
+            font-size: 0.95em;
+        }
+        .comp-row:last-child { border-bottom: none; }
+        .comp-left { color: #999; }
+        .comp-right { color: #FF1493; font-weight: bold; display: flex; align-items: center; }
+        .comp-right:before { content: '→ '; margin-right: 5px; font-size: 1.2em; }
+
+        /* === 锁定内容遮罩样式（仿截图4） === */
+        .locked-preview {
+            position: relative;
+            background: #fff;
+            border: 1px solid #ffe5f0;
+            border-radius: 15px;
+            padding: 20px;
             margin: 25px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(219, 112, 147, 0.1);
         }
-        
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 1.1em;
-        }
-        
-        .current-price {
-            color: #FF1493;
-            font-size: 2.8em;
-            font-weight: bold;
-            margin: 8px 0;
-            text-shadow: 0 2px 4px rgba(255,20,147,0.2);
-        }
-        
-        .price-note {
+        .locked-blur {
+            filter: blur(5px);
+            user-select: none;
+            opacity: 0.6;
             color: #666;
-            font-size: 0.85em;
-            line-height: 1.5;
+            line-height: 1.8;
         }
+        .locked-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 5;
+        }
+        .lock-icon { font-size: 40px; margin-bottom: 10px; }
+        .lock-text { color: #333; font-weight: bold; margin-bottom: 15px; font-size: 1.1em; }
         
-        .admin-link {
+        .btn-unlock-red {
+            background: linear-gradient(180deg, #FF5252 0%, #FF1744 100%);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.4);
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+
+        .price-tag { text-align: center; margin: 25px 0; }
+        .original-price { text-decoration: line-through; color: #999; font-size: 1.1em; }
+        .current-price { color: #FF1493; font-size: 3.2em; font-weight: bold; margin: 8px 0; text-shadow: 0 2px 4px rgba(255,20,147,0.2); }
+        .price-note { color: #666; font-size: 0.85em; line-height: 1.5; }
+        
+        .admin-link { text-align: center; margin-top: 25px; color: #BBB; font-size: 0.85em; cursor: pointer; transition: color 0.3s; }
+        .admin-link:hover { color: #FFB6C1; }
+
+        /* === 红色强转化上传按钮 === */
+        .upload-btn-red {
+            background: linear-gradient(180deg, #FF4757 0%, #FF6B81 100%);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: bold;
             text-align: center;
-            margin-top: 25px;
-            color: #BBB;
+            border: none;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 0 #C41E3A; /* 3D按压效果 */
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .upload-btn-red:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #C41E3A;
+        }
+
+        /* === 黄色引导框 === */
+        .after-pay-guide {
+            background: #FFF8E1;
+            border: 1px dashed #FFB74D;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .guide-step-title {
+            color: #E65100;
+            font-weight: bold;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .guide-step-text {
+            font-size: 0.9em;
+            color: #5D4037;
+            line-height: 1.6;
+        }
+
+        /* === 招募学徒广告（粉色版） === */
+        .recruit-card {
+            background: #FFF0F5;
+            border: 2px dashed #FF69B4;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 35px;
+        }
+        .recruit-copy-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: fit-content;
+            margin: 15px auto 0 auto;
+            border: 1px solid #FFC0CB;
+            box-shadow: 0 2px 8px rgba(255,182,193,0.2);
+        }
+        .btn-copy-pink {
+            background: #FF1493; 
+            color: white;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 6px;
             font-size: 0.85em;
             cursor: pointer;
-            transition: color 0.3s;
+            font-weight: bold;
         }
         
-        .admin-link:hover {
-            color: #FFB6C1;
-        }
-        
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.05);} 100% {transform: scale(1);} }
+
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .card {
-                padding: 25px 18px;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .dimensions-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .characteristics {
-                grid-template-columns: 1fr;
-            }
-            
-            .scores-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .chart-container {
-                height: 300px;
-            }
+            body { padding: 10px; }
+            .card { padding: 25px 18px; }
+            .header h1 { font-size: 1.8em; }
+            .dimensions-grid, .characteristics, .scores-list { grid-template-columns: 1fr; }
+            .chart-container { height: 300px; }
         }
         
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 卡密验证页 -->
         <div id="cardVerifyPage" class="card">
             <div class="header">
                 <h1>黑暗人格测试</h1>
@@ -619,14 +402,13 @@ margin-left: 0;  /* 👈 新增这行 */
                     <li>40题专业心理量表</li>
                     <li>4大核心维度深度分析</li>
                     <li>黑暗人格D因子评分</li>
-                    <li><strong style="color:#FF1493;">完整深度报告+成长建议 (¥0.99元解锁)</strong></li>
+                    <li><strong style="color:#FF1493;">完整深度报告+成长建议 (¥2.99元解锁)</strong></li>
                 </ul>
             </div>
             
             <div class="admin-link" onclick="showAdminPanel()">管理员入口 →</div>
         </div>
         
-        <!-- 测试页 -->
         <div id="testPage" class="card hidden">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
@@ -643,7 +425,6 @@ margin-left: 0;  /* 👈 新增这行 */
                 <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
             </div>
         </div>
-        <!-- 免费结果页 -->
         <div id="freeResultPage" class="card hidden">
             <div class="result-banner">
                 <h2>你的黑暗人格报告</h2>
@@ -698,109 +479,129 @@ margin-left: 0;  /* 👈 新增这行 */
                     <li style="padding: 6px 0;">🔥 完整分析：付费版有深度心理解析</li>
                 </ul>
             </div>
+
+            <div class="locked-preview">
+                <div class="locked-blur">
+                    <p>值得注意的是，你的<strong>内省</strong>得分较低，这可能是限制你目前人际关系突破的关键隐形短板。建议查看完整报告中的【避坑指南】。</p>
+                    <p>此外，你的<strong>潜在阴暗面</strong>在压力下容易爆发，表现为过度的防御机制。详细的心理动因分析如下...</p>
+                    <p>（此处省略 2000 字深度解析内容）</p>
+                </div>
+                <div class="locked-overlay">
+                    <div class="lock-icon">🔒</div>
+                    <div class="lock-text">解锁查看完整深度隐藏性格解析</div>
+                    <button class="btn-unlock-red" onclick="document.getElementById('paySection').scrollIntoView({behavior: 'smooth'})">立即解锁 (仅需 ¥2.99)</button>
+                </div>
+            </div>
             
             <div class="unlock-section">
                 <h3>
-                    你的<strong style="color: #FF1493;">基础版</strong>报告已出 ✨<br>
+                    你的<strong style="color: #FF1493;">基础版报告已出</strong> ✨<br>
                     解锁 <strong style="color: #FF1493;">完整深度分析</strong> 看透你的黑暗人格
                 </h3>
                 
-                <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
-                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
-                        <span style="color: #999;">基础诊断（分数）</span>
-                        <span style="color: #FF1493; font-weight: bold;">→ 完整人格图谱</span>
+                <div class="comparison-table">
+                    <div class="comp-row">
+                        <span class="comp-left">基础诊断（分数）</span>
+                        <span class="comp-right">完整人格图谱</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
-                        <span style="color: #999;">简单描述（3句话）</span>
-                        <span style="color: #FF1493; font-weight: bold;">→ 深度心理分析</span>
+                    <div class="comp-row">
+                        <span class="comp-left">简单描述（3句话）</span>
+                        <span class="comp-right">深度心理分析</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE5F0;">
-                        <span style="color: #999;">无行为建议</span>
-                        <span style="color: #FF1493; font-weight: bold;">→ 个性化成长方案</span>
+                    <div class="comp-row">
+                        <span class="comp-left">无行为建议</span>
+                        <span class="comp-right">个性化成长方案</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; padding: 12px 0;">
-                        <span style="color: #999;">无案例分析</span>
-                        <span style="color: #FF1493; font-weight: bold;">→ 真实场景案例</span>
+                    <div class="comp-row">
+                        <span class="comp-left">无案例分析</span>
+                        <span class="comp-right">真实场景案例</span>
                     </div>
                 </div>
                 
                 <div class="price-tag">
-                    <div class="original-price">原价 ¥29.9</div>
-                    <div class="current-price">¥0.99元</div>
+                    <div class="original-price">原价 ¥59.9</div>
+                    <div class="current-price">¥2.99元</div>
                     <div class="price-note">限时特惠 · 一杯奶茶的价格 · 了解真实的自己</div>
                 </div>
                 
-<h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
-    💳 选择支付方式
-</h4>
+<div id="paySection">
+    <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+        💳 选择支付方式
+    </h4>
 
-<div style="max-width: 400px; margin: 0 auto;">
-    <!-- 快捷支付按钮 -->
-    <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
-        <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
-    </a>
-    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
-        <span style="margin-right: 6px;">⚡</span> 微信快捷支付
-    </button>
-    
-    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
-    
-    <!-- 👇 收款码图片（新增部分） -->
-    <div style="text-align: center; margin: 20px 0;">
-        <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥0.99元</p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
-                     alt="微信收款码" 
-                     onerror="this.parentElement.style.display='none'" 
-                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
-                <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
+    <div style="max-width: 400px; margin: 0 auto;">
+        <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
+            <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
+        </a>
+        <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
+            <span style="margin-right: 6px;">⚡</span> 微信快捷支付
+        </button>
+        
+        <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥2.99元</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
+                         alt="微信收款码" 
+                         onerror="this.parentElement.style.display='none'" 
+                         style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
+                    <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
+                </div>
+                <div style="text-align: center;">
+                    <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
+                         alt="支付宝收款码" 
+                         onerror="this.parentElement.style.display='none'" 
+                         style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
+                    <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
+                </div>
             </div>
-            <div style="text-align: center;">
-                <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
-                     alt="支付宝收款码" 
-                     onerror="this.parentElement.style.display='none'" 
-                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
-                <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
-            </div>
+            <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
+                💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
+            </p>
         </div>
-        <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
-            💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
-        </p>
+        
+        <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+        
+        <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #333; font-size: 0.95em;">hch91178</span>
+            <button onclick="copyToClipboard('hch91178', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
+        </div>
+        <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
+            <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+        </div>
     </div>
-    <!-- 👆 收款码图片结束 -->
-    
-    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
-    
-    <!-- 复制账号 -->
-    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="color: #333; font-size: 0.95em;">hch91178</span>
-        <button onclick="copyToClipboard('hch91178', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
-    </div>
-    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
-        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB6C1; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+
+    <label for="paymentProofInput" class="upload-btn-red">
+        📷 上传付款截图，自动出报告
+    </label>
+    <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+
+    <div class="after-pay-guide">
+        <div class="guide-step-title">❓ 付款后如何获取报告？</div>
+        <div class="guide-step-text">
+            1. 截图保存您的支付凭证<br>
+            2. 点击上方<strong>“红色按钮”</strong>上传截图<br>
+            3. 系统核验后<strong>自动跳转</strong>显示完整报告
+        </div>
     </div>
 </div>
 
-<h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
-    📸 上传付款截图
-</h4>
+            <div class="recruit-card">
+                <div style="font-weight: bold; color: #FF1493; margin-bottom: 5px; font-size: 1.1em;">📢 招心理测试项目学徒</div>
+                <div style="color: #666; font-size: 0.9em;">项目实操 · 流量变现 · 长期带教</div>
+                <div class="recruit-copy-box">
+                    <span style="font-weight: bold; color: #333;">HCH91178</span>
+                    <span style="color: #999; font-size: 0.85em;">(备注:学习测试)</span>
+                    <button class="btn-copy-pink" onclick="copyToClipboard('HCH91178', this)">复制</button>
+                </div>
+            </div>
 
-<label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-    📸 点击上传截图，立即查看完整报告
-</label>
-<input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
-
-<div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,182,193,0.1); border-radius: 10px;">
-    <p style="color: #FF69B4; font-size: 0.85em; margin: 0;">
-        🔒 上传截图后立即解锁完整报告，无需等待
-    </p>
-</div>
             </div>
         </div>
         
-        <!-- 完整报告页 -->
         <div id="fullReportPage" class="card hidden">
             <div style="background: linear-gradient(135deg, #07C160 0%, #05A650 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
                 <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁！</h3>
@@ -915,6 +716,16 @@ margin-left: 0;  /* 👈 新增这行 */
                 </ul>
             </div>
             
+            <div class="recruit-card">
+                <div style="font-weight: bold; color: #FF1493; margin-bottom: 5px; font-size: 1.1em;">📢 招心理测试项目学徒</div>
+                <div style="color: #666; font-size: 0.9em;">项目实操 · 流量变现 · 长期带教</div>
+                <div class="recruit-copy-box">
+                    <span style="font-weight: bold; color: #333;">HCH91178</span>
+                    <span style="color: #999; font-size: 0.85em;">(备注:学习测试)</span>
+                    <button class="btn-copy-pink" onclick="copyToClipboard('HCH91178', this)">复制</button>
+                </div>
+            </div>
+
             <div style="background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin: 25px 0;">
                 <h3 style="margin-bottom: 12px; font-size: 1.4em;">💕 感谢你的支持</h3>
                 <p style="font-size: 0.95em; opacity: 0.95; line-height: 1.6;">
@@ -927,7 +738,6 @@ margin-left: 0;  /* 👈 新增这行 */
             <button class="btn btn-secondary" onclick="location.reload()">重新测评</button>
         </div>
         
-        <!-- 管理员后台 -->
         <div id="adminPanel" class="card hidden">
             <h2 style="color: #FF69B4; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
             <div class="input-group">
@@ -943,6 +753,7 @@ margin-left: 0;  /* 👈 新增这行 */
         const CUSTOMER_SERVICE_WECHAT = 'jsh9109';
         const ADMIN_PASSWORD = 'lss900201';
         const MASTER_CODE = "GEMINI-MASTER";
+        const SERVER_KEY = "SCT303445TGU9j8Q5VLg6rT7eryLe8L41v"; // ServerChan Key
         // ==================================================
         
         /* 40道黑暗人格测试题目 */
@@ -1310,6 +1121,16 @@ margin-left: 0;  /* 👈 新增这行 */
                     showFullReport();
                 }, 500);
                 
+                // 发送 Server酱通知
+                fetch(`https://sctapi.ftqq.com/${SERVER_KEY}.send`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        title: '💰黑暗人格-新订单2.99',
+                        desp: `用户已上传截图，卡号: ${currentCard?.code || '未知'}`
+                    })
+                }).catch(e => console.error("通知发送失败", e));
+
                 saveSimpleOrder();
             }
         }
@@ -1318,7 +1139,7 @@ margin-left: 0;  /* 👈 新增这行 */
             const orders = JSON.parse(localStorage.getItem('darkOrders') || '[]');
             orders.unshift({
                 id: Date.now(),
-                amount: 0.99元,
+                amount: "2.99元",
                 product: '黑暗人格完整报告',
                 time: new Date().toISOString(),
                 status: '已完成'
@@ -1499,8 +1320,3 @@ margin-left: 0;  /* 👈 新增这行 */
     </script>
 </body>
 </html>
-
-
-
-
-
